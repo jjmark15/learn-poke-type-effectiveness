@@ -1,5 +1,5 @@
 {
-  "name": "~TODO~",
+  "name": "poke-types-game",
   "version": "0.0.1",
   "scripts": {
     "dev": "svelte-kit dev",
