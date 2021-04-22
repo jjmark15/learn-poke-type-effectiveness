@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { Effectiveness } from '$lib/effectiveness';
-
 	import { EffectivenessCalculator } from '$lib/effectiveness-calculator';
-	import { PokemonElement } from '$lib/element';
+	import { elementString } from '$lib/element';
+	import { RandomElementSelector } from '$lib/random-element-selector';
 
 	function effectivenessDescription(effectiveness: Effectiveness): String {
 		switch (effectiveness) {
@@ -17,9 +17,21 @@
 		}
 	}
 
-	const effectivenessCalculator = new EffectivenessCalculator();
+	function generateNewElements() {
+		damageElement = elementSelector.generate();
+		defendingElement = elementSelector.generate();
+	}
 
-	let effectivess = effectivenessCalculator.calculate(PokemonElement.Fire, PokemonElement.Dragon);
+	const effectivenessCalculator = new EffectivenessCalculator();
+	const elementSelector = RandomElementSelector.default();
+
+	let damageElement = elementSelector.generate();
+	let defendingElement = elementSelector.generate();
+
+	$: effectivess = effectivenessCalculator.calculate(damageElement, defendingElement);
 </script>
 
+<p>Damage type is {elementString(damageElement)}</p>
+<p>Defending type is {elementString(defendingElement)}</p>
 <p>{effectivenessDescription(effectivess)}</p>
+<button on:click={generateNewElements}>Refresh</button>
