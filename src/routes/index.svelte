@@ -1,21 +1,8 @@
 <script lang="ts">
-	import { Effectiveness } from '$lib/effectiveness';
+	import { effectivenessString } from '$lib/effectiveness';
 	import { EffectivenessCalculator } from '$lib/effectiveness-calculator';
 	import { elementString } from '$lib/element';
 	import { RandomElementSelector } from '$lib/random-element-selector';
-
-	function effectivenessDescription(effectiveness: Effectiveness): String {
-		switch (effectiveness) {
-			case Effectiveness.Zero:
-				return 'No effect';
-			case Effectiveness.Half:
-				return 'Not very effective';
-			case Effectiveness.Single:
-				return 'Normal';
-			case Effectiveness.Double:
-				return 'Super effective';
-		}
-	}
 
 	function generateNewElements() {
 		damageElement = elementSelector.generate();
@@ -33,5 +20,5 @@
 
 <p>Damage type is {elementString(damageElement)}</p>
 <p>Defending type is {elementString(defendingElement)}</p>
-<p>{effectivenessDescription(effectivess)}</p>
+<p>{effectivenessString(effectivess)}</p>
 <button on:click={generateNewElements}>Refresh</button>
