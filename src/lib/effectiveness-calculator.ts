@@ -1,5 +1,5 @@
-import { Effectiveness } from './Effectiveness';
-import { PokemonElement } from './Element';
+import { Effectiveness } from './effectiveness';
+import { PokemonElement } from './element';
 
 export class EffectivenessCalculator {
 	public calculate(damageElement: PokemonElement, defendingElement: PokemonElement): Effectiveness {
