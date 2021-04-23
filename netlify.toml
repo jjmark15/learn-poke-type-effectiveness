@@ -10,6 +10,8 @@
   # Default build command.
   command = "yarn build"
 
+  functions = "functions/"
+
 
 [functions]
   # Directory with serverless functions, including background functions,
