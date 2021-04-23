@@ -35,17 +35,19 @@
 	$: answerSelected = effectivenessSelection !== undefined;
 </script>
 
-<p>Damage type is {elementString(damageElement)}</p>
-<p>Defending type is {elementString(defendingElement)}</p>
-{#if answerSelected}
-	<p>Correct answer is {effectivenessString(effectivess)}</p>
-	<p>Your answer was {effectivenessString(effectivenessSelection)}</p>
-{/if}
-<div>
-	{#each effectivenesses as eff}
-		<button disabled={answerSelected} on:click={() => handleSelection(eff)}
-			>{effectivenessString(eff)}</button
-		>
-	{/each}
+<div class="text-2xl">
+	<div>Damage type is {elementString(damageElement)}</div>
+	<div>Defending type is {elementString(defendingElement)}</div>
+	{#if answerSelected}
+		<div>Correct answer is {effectivenessString(effectivess)}</div>
+		<div>Your answer was {effectivenessString(effectivenessSelection)}</div>
+	{/if}
+	<div>
+		{#each effectivenesses as eff}
+			<button disabled={answerSelected} on:click={() => handleSelection(eff)}
+				>{effectivenessString(eff)}</button
+			>
+		{/each}
+	</div>
+	<button on:click={resetState}>Next</button>
 </div>
-<button on:click={resetState}>Next</button>
