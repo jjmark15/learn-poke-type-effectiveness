@@ -35,19 +35,24 @@
 	$: answerSelected = effectivenessSelection !== undefined;
 </script>
 
-<div class="text-2xl">
-	<div>Damage type is {elementString(damageElement)}</div>
-	<div>Defending type is {elementString(defendingElement)}</div>
+<div class="h-full text-3xl flex flex-col justify-end p-4">
 	{#if answerSelected}
-		<div>Correct answer is {effectivenessString(effectivess)}</div>
-		<div>Your answer was {effectivenessString(effectivenessSelection)}</div>
+		<div class="text-center">Correct answer is {effectivenessString(effectivess)}</div>
+		<div class="text-center">
+			Your answer was {effectivenessString(effectivenessSelection)}
+		</div>
 	{/if}
-	<div>
+	<div class="text-center">
+		{elementString(damageElement)} attacks {elementString(defendingElement)}
+	</div>
+	<div class="flex flex-row flex-wrap justify-evenly">
 		{#each effectivenesses as eff}
-			<button disabled={answerSelected} on:click={() => handleSelection(eff)}
-				>{effectivenessString(eff)}</button
+			<button
+				class="border-solid border-2 border-pink-200 rounded-lg py-1 px-2 my-1"
+				disabled={answerSelected}
+				on:click={() => handleSelection(eff)}>{effectivenessString(eff)}</button
 			>
 		{/each}
 	</div>
-	<button on:click={resetState}>Next</button>
+	<button class="inline-flex mx-auto text-center" on:click={resetState}>Next</button>
 </div>
