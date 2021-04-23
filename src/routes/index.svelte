@@ -33,28 +33,47 @@
 	$: effectivess = effectivenessCalculator.calculate(damageElement, defendingElement);
 	let effectivenessSelection: Effectiveness;
 	$: answerSelected = effectivenessSelection !== undefined;
+	$: selectedIsCorrect = effectivenessSelection === effectivess;
 </script>
 
 <div class="h-full text-3xl flex flex-col justify-end sm:justify-center p-4">
-	{#if answerSelected}
-		<div class="text-center">Correct answer is {effectivenessString(effectivess)}</div>
-		<div class="text-center">
-			Your answer was {effectivenessString(effectivenessSelection)}
-		</div>
-	{/if}
 	<div class="text-center">
 		{elementString(damageElement)} attacks {elementString(defendingElement)}
 	</div>
 	<div class="flex flex-row flex-wrap justify-evenly">
 		{#each effectivenesses as eff}
 			<button
-				class="border-solid border-2 border-pink-200 rounded-lg py-1 px-2 my-1"
+				class="app-btn my-1"
+				class:answer-btn--correct={effectivess === eff && answerSelected}
+				class:answer-btn--wrong={effectivenessSelection === eff && !selectedIsCorrect}
+				class:app-btn--disabled={answerSelected}
 				disabled={answerSelected}
 				on:click={() => handleSelection(eff)}>{effectivenessString(eff)}</button
 			>
 		{/each}
 	</div>
-	<button disabled={!answerSelected} class="inline-flex mx-auto text-center" on:click={resetState}
-		>Next</button
+	<button
+		disabled={!answerSelected}
+		class="inline-flex mx-auto text-center app-btn mt-1"
+		class:app-btn--disabled={!answerSelected}
+		on:click={resetState}>Next</button
 	>
 </div>
+
+<style>
+	.app-btn {
+		@apply py-1 px-2 border-solid border-2 border-pink-200 rounded-lg text-white;
+	}
+
+	.app-btn--disabled {
+		@apply text-gray-500 border-gray-500 border-dashed;
+	}
+
+	.answer-btn--correct {
+		@apply border-green-300 text-green-300;
+	}
+
+	.answer-btn--wrong {
+		@apply border-red-500 text-red-500;
+	}
+</style>
