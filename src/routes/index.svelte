@@ -35,7 +35,7 @@
 	$: answerSelected = effectivenessSelection !== undefined;
 </script>
 
-<div class="h-full text-3xl flex flex-col justify-end p-4">
+<div class="h-full text-3xl flex flex-col justify-end sm:justify-center p-4">
 	{#if answerSelected}
 		<div class="text-center">Correct answer is {effectivenessString(effectivess)}</div>
 		<div class="text-center">
