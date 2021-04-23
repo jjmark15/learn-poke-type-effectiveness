@@ -54,5 +54,7 @@
 			>
 		{/each}
 	</div>
-	<button class="inline-flex mx-auto text-center" on:click={resetState}>Next</button>
+	<button disabled={!answerSelected} class="inline-flex mx-auto text-center" on:click={resetState}
+		>Next</button
+	>
 </div>
