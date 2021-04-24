@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-	<meta property="og:title" content="Learn Pokemon Type Effectiveness" />
+	<meta property="og:title" content="PokeLearn" />
 	<meta property="og:description" content="Learn Pokemon Type Effectiveness" />
 	<meta property="og:type" content="website" />
 	{#if browser}
