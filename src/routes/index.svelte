@@ -15,8 +15,9 @@
 	function advanceStreak() {
 		if (effectivenessSelection === correctEffectivess) {
 			streakCounter.increment();
-		} else {
 			updateStreakHighScoreIfBetter(streakCounter.value());
+		} else {
+			refreshLocalHighScore();
 			streakCounter.reset();
 		}
 	}
@@ -29,9 +30,7 @@
 
 	async function updateStreakHighScoreIfBetter(newStreakValue: number) {
 		if (newStreakValue > streakHighScore) {
-			highScoreRepository.update(newStreakValue).then(() => {
-				refreshLocalHighScore();
-			});
+			highScoreRepository.update(newStreakValue);
 		}
 	}
 
