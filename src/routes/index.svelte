@@ -3,14 +3,25 @@
 	import { EffectivenessCalculator } from '$lib/effectiveness-calculator';
 	import { elementString } from '$lib/element';
 	import { RandomElementSelector } from '$lib/random-element-selector';
+	import { StreakCounter } from '$lib/streak-counter';
 
 	function generateNewElements() {
 		damageElement = elementSelector.generate();
 		defendingElement = elementSelector.generate();
 	}
 
+	function advanceStreak() {
+		if (effectivenessSelection === correctEffectivess) {
+			streakCounter.increment();
+		} else {
+			streakCounter.reset();
+		}
+	}
+
 	function handleSelection(effectiveness: Effectiveness) {
 		effectivenessSelection = effectiveness;
+		advanceStreak();
+		streakCounterValue = streakCounter.value();
 	}
 
 	function resetState() {
@@ -26,14 +37,16 @@
 	];
 	const effectivenessCalculator = new EffectivenessCalculator();
 	const elementSelector = RandomElementSelector.default();
+	const streakCounter = StreakCounter.default();
 
 	let damageElement = elementSelector.generate();
 	let defendingElement = elementSelector.generate();
 
-	$: effectivess = effectivenessCalculator.calculate(damageElement, defendingElement);
+	$: streakCounterValue = streakCounter.value();
+	$: correctEffectivess = effectivenessCalculator.calculate(damageElement, defendingElement);
 	let effectivenessSelection: Effectiveness;
 	$: answerSelected = effectivenessSelection !== undefined;
-	$: selectedIsCorrect = effectivenessSelection === effectivess;
+	$: selectedIsCorrect = effectivenessSelection === correctEffectivess;
 </script>
 
 <svelte:head>
@@ -41,8 +54,11 @@
 </svelte:head>
 
 <div class="h-full text-3xl flex flex-col justify-end sm:justify-center p-4">
+	<div class="flex flex-row justify-start">
+		<p>Current streak: {streakCounterValue}</p>
+	</div>
 	<div class="flex flex-col flex-grow justify-center mb-2">
-		<p class="text-7xl text-center">
+		<p class="text-7xl text-center text-pink-200">
 			{elementString(damageElement)} attacks {elementString(defendingElement)}
 		</p>
 	</div>
@@ -50,7 +66,7 @@
 		{#each effectivenesses as eff}
 			<button
 				class="app-btn m-1 flex-grow-0 flex-shrink"
-				class:answer-btn--correct={effectivess === eff && answerSelected}
+				class:answer-btn--correct={correctEffectivess === eff && answerSelected}
 				class:answer-btn--wrong={effectivenessSelection === eff && !selectedIsCorrect}
 				class:app-btn--disabled={answerSelected}
 				disabled={answerSelected}
