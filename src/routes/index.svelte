@@ -12,10 +12,17 @@
 		defendingElement = elementSelector.generate();
 	}
 
+	function startingANewStreak(): boolean {
+		return streakCounter.value() === 0;
+	}
+
+	function answerSelectionIsCorrect(): boolean {
+		return effectivenessSelection === correctEffectivess;
+	}
+
 	function advanceStreak() {
-		if (effectivenessSelection === correctEffectivess) {
+		if (answerSelectionIsCorrect()) {
 			streakCounter.increment();
-			updateStreakHighScoreIfBetter(streakCounter.value());
 		} else {
 			streakCounter.reset();
 		}
@@ -27,21 +34,35 @@
 		});
 	}
 
+	function refreshLocalStreakCount(): void {
+		streakCounterValue = streakCounter.value();
+	}
+
 	async function updateStreakHighScoreIfBetter(newStreakValue: number) {
 		if (newStreakValue > streakHighScore) {
 			highScoreRepository.update(newStreakValue);
 		}
 	}
 
+	function resetAnswerSelection() {
+		effectivenessSelection = undefined;
+	}
+
 	function handleSelection(effectiveness: Effectiveness) {
 		effectivenessSelection = effectiveness;
 		advanceStreak();
+		if (answerSelectionIsCorrect()) {
+			refreshLocalStreakCount();
+		}
+		updateStreakHighScoreIfBetter(streakCounter.value());
 	}
 
 	function resetState() {
-		refreshLocalHighScore();
-		streakCounterValue = streakCounter.value();
-		effectivenessSelection = undefined;
+		if (startingANewStreak()) {
+			refreshLocalHighScore();
+		}
+		refreshLocalStreakCount();
+		resetAnswerSelection();
 		generateNewElements();
 	}
 
