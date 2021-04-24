@@ -41,13 +41,15 @@
 </svelte:head>
 
 <div class="h-full text-3xl flex flex-col justify-end sm:justify-center p-4">
-	<div class="text-center">
-		{elementString(damageElement)} attacks {elementString(defendingElement)}
+	<div class="flex flex-col flex-grow justify-center mb-2">
+		<p class="text-7xl text-center">
+			{elementString(damageElement)} attacks {elementString(defendingElement)}
+		</p>
 	</div>
-	<div class="flex flex-row flex-wrap justify-evenly">
+	<div class="flex flex-row flex-wrap mb-2 justify-center">
 		{#each effectivenesses as eff}
 			<button
-				class="app-btn my-1"
+				class="app-btn m-1 flex-grow-0 flex-shrink"
 				class:answer-btn--correct={effectivess === eff && answerSelected}
 				class:answer-btn--wrong={effectivenessSelection === eff && !selectedIsCorrect}
 				class:app-btn--disabled={answerSelected}
@@ -56,12 +58,14 @@
 			>
 		{/each}
 	</div>
-	<button
-		disabled={!answerSelected}
-		class="inline-flex mx-auto text-center app-btn mt-1"
-		class:app-btn--disabled={!answerSelected}
-		on:click={resetState}>Next</button
-	>
+	<div class="flex flex-col flex-grow-0 sm:flex-grow">
+		<button
+			disabled={!answerSelected}
+			class="mx-auto my-auto app-btn"
+			class:app-btn--disabled={!answerSelected}
+			on:click={resetState}>Next</button
+		>
+	</div>
 </div>
 
 <style>
