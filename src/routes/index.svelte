@@ -90,7 +90,7 @@
 	<title>Learn Pokemon Type Effectiveness</title>
 </svelte:head>
 
-<div class="h-full text-3xl flex flex-col justify-end sm:justify-center p-4">
+<div class="h-full text-3xl flex flex-col justify-end sm:justify-center">
 	<div class="flex flex-row justify-start">
 		<p>
 			Current streak: {streakCounterValue} <span class="text-gray-500">({streakHighScore})</span>

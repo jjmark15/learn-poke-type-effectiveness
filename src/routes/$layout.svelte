@@ -12,4 +12,4 @@
 	{/if}
 </svelte:head>
 
-<slot class="h-full" />
+<slot />
