@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Effectiveness, effectivenessString } from '$lib/effectiveness';
+	import { Effectiveness, EFFECTIVENESSES, effectivenessString } from '$lib/effectiveness';
 	import { EffectivenessCalculator } from '$lib/effectiveness-calculator';
 	import { elementString } from '$lib/element';
 	import { HighScoreRepository } from '$lib/high-score-repository';
@@ -66,12 +66,6 @@
 		generateNewElements();
 	}
 
-	const effectivenesses: Array<Effectiveness> = [
-		Effectiveness.Zero,
-		Effectiveness.Half,
-		Effectiveness.Single,
-		Effectiveness.Double
-	];
 	const effectivenessCalculator = new EffectivenessCalculator();
 	const elementSelector = RandomElementSelector.default();
 	const streakCounter = StreakCounter.default();
@@ -108,7 +102,7 @@
 		</p>
 	</div>
 	<div class="flex flex-row flex-wrap mb-2 justify-center">
-		{#each effectivenesses as eff}
+		{#each EFFECTIVENESSES as eff}
 			<button
 				class="app-btn m-1 flex-grow-0 flex-shrink"
 				class:answer-btn--correct={correctEffectivess === eff && answerSelected}

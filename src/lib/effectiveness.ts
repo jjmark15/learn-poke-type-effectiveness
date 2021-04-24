@@ -17,3 +17,10 @@ export function effectivenessString(effectiveness: Effectiveness): string {
 			return 'Super effective';
 	}
 }
+
+export const EFFECTIVENESSES: Array<Effectiveness> = [
+	Effectiveness.Zero,
+	Effectiveness.Half,
+	Effectiveness.Single,
+	Effectiveness.Double
+];
