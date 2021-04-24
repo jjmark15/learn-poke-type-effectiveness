@@ -17,7 +17,6 @@
 			streakCounter.increment();
 			updateStreakHighScoreIfBetter(streakCounter.value());
 		} else {
-			refreshLocalHighScore();
 			streakCounter.reset();
 		}
 	}
@@ -37,10 +36,11 @@
 	function handleSelection(effectiveness: Effectiveness) {
 		effectivenessSelection = effectiveness;
 		advanceStreak();
-		streakCounterValue = streakCounter.value();
 	}
 
 	function resetState() {
+		refreshLocalHighScore();
+		streakCounterValue = streakCounter.value();
 		effectivenessSelection = undefined;
 		generateNewElements();
 	}
