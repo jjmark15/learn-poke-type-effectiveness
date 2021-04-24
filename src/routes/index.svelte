@@ -36,6 +36,10 @@
 	$: selectedIsCorrect = effectivenessSelection === effectivess;
 </script>
 
+<svelte:head>
+	<title>Learn Pokemon Type Effectiveness</title>
+</svelte:head>
+
 <div class="h-full text-3xl flex flex-col justify-end sm:justify-center p-4">
 	<div class="text-center">
 		{elementString(damageElement)} attacks {elementString(defendingElement)}
