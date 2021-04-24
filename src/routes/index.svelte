@@ -2,8 +2,10 @@
 	import { Effectiveness, effectivenessString } from '$lib/effectiveness';
 	import { EffectivenessCalculator } from '$lib/effectiveness-calculator';
 	import { elementString } from '$lib/element';
+	import { HighScoreRepository } from '$lib/high-score-repository';
 	import { RandomElementSelector } from '$lib/random-element-selector';
 	import { StreakCounter } from '$lib/streak-counter';
+	import { browser } from '$app/env';
 
 	function generateNewElements() {
 		damageElement = elementSelector.generate();
@@ -14,7 +16,22 @@
 		if (effectivenessSelection === correctEffectivess) {
 			streakCounter.increment();
 		} else {
+			updateStreakHighScoreIfBetter(streakCounter.value());
 			streakCounter.reset();
+		}
+	}
+
+	function refreshLocalHighScore() {
+		highScoreRepository.get().then((score) => {
+			streakHighScore = score;
+		});
+	}
+
+	async function updateStreakHighScoreIfBetter(newStreakValue: number) {
+		if (newStreakValue > streakHighScore) {
+			highScoreRepository.update(newStreakValue).then(() => {
+				refreshLocalHighScore();
+			});
 		}
 	}
 
@@ -38,10 +55,16 @@
 	const effectivenessCalculator = new EffectivenessCalculator();
 	const elementSelector = RandomElementSelector.default();
 	const streakCounter = StreakCounter.default();
+	let highScoreRepository: HighScoreRepository;
+	if (browser) {
+		highScoreRepository = new HighScoreRepository();
+		refreshLocalHighScore();
+	}
 
 	let damageElement = elementSelector.generate();
 	let defendingElement = elementSelector.generate();
 
+	let streakHighScore = 0;
 	$: streakCounterValue = streakCounter.value();
 	$: correctEffectivess = effectivenessCalculator.calculate(damageElement, defendingElement);
 	let effectivenessSelection: Effectiveness;
@@ -55,7 +78,9 @@
 
 <div class="h-full text-3xl flex flex-col justify-end sm:justify-center p-4">
 	<div class="flex flex-row justify-start">
-		<p>Current streak: {streakCounterValue}</p>
+		<p>
+			Current streak: {streakCounterValue} <span class="text-gray-500">({streakHighScore})</span>
+		</p>
 	</div>
 	<div class="flex flex-col flex-grow justify-center mb-2">
 		<p class="text-7xl text-center text-pink-200">
