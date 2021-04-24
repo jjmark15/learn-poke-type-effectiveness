@@ -104,7 +104,7 @@
 	<div class="flex flex-row flex-wrap mb-2 justify-center">
 		{#each EFFECTIVENESSES as eff}
 			<button
-				class="app-btn m-1 flex-grow-0 flex-shrink"
+				class="app-btn m-1 flex-grow-0"
 				class:answer-btn--correct={correctEffectivess === eff && answerSelected}
 				class:answer-btn--wrong={effectivenessSelection === eff && !selectedIsCorrect}
 				class:app-btn--disabled={answerSelected}
@@ -113,10 +113,10 @@
 			>
 		{/each}
 	</div>
-	<div class="flex flex-col flex-grow-0 sm:flex-grow">
+	<div class="flex flex-col flex-grow-0 justify-center sm:flex-grow">
 		<button
 			disabled={!answerSelected}
-			class="mx-auto my-auto app-btn"
+			class="flex-grow-0 mx-auto app-btn"
 			class:app-btn--disabled={!answerSelected}
 			on:click={resetState}>Next</button
 		>
