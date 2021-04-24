@@ -40,7 +40,7 @@
 	<title>Learn Pokemon Type Effectiveness</title>
 </svelte:head>
 
-<div class="h-screen text-3xl flex flex-col justify-end sm:justify-center p-4">
+<div class="h-full text-3xl flex flex-col justify-end sm:justify-center p-4">
 	<div class="flex flex-col flex-grow justify-center mb-2">
 		<p class="text-7xl text-center">
 			{elementString(damageElement)} attacks {elementString(defendingElement)}
