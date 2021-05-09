@@ -98,7 +98,11 @@
 	</div>
 	<div class="flex flex-col flex-grow justify-center mb-2">
 		<p class="text-7xl text-center text-pink-200">
-			{elementString(damageElement)} attacks {elementString(defendingElement)}
+			{#if browser}
+				{elementString(damageElement)} attacks {elementString(defendingElement)}
+			{:else}
+				Loading
+			{/if}
 		</p>
 	</div>
 	<div class="flex flex-row flex-wrap mb-2 justify-center">
