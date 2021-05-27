@@ -1,89 +1,90 @@
 <script lang="ts">
 	import { Effectiveness, EFFECTIVENESSES, effectivenessString } from '$lib/effectiveness';
 	import { EffectivenessCalculator } from '$lib/effectiveness-calculator';
-	import { elementString } from '$lib/element';
+	import { elementString, PokemonElement } from '$lib/element';
 	import { HighScoreRepository } from '$lib/high-score-repository';
 	import { RandomElementSelector } from '$lib/random-element-selector';
 	import { StreakCounter } from '$lib/streak-counter';
 	import { browser } from '$app/env';
+	import { GameState } from '$lib/game-state';
 
-	function generateNewElements() {
-		damageElement = elementSelector.generate();
-		defendingElement = elementSelector.generate();
-	}
-
-	function startingANewStreak(): boolean {
-		return streakCounter.value() === 0;
-	}
-
-	function answerSelectionIsCorrect(): boolean {
-		return effectivenessSelection === correctEffectivess;
-	}
-
-	function advanceStreak() {
-		if (answerSelectionIsCorrect()) {
-			streakCounter.increment();
-		} else {
-			streakCounter.reset();
-		}
+	function refreshLocalScenarioElements() {
+		damageElement = gameState.damageElement();
+		defendingElement = gameState.defendingElement();
 	}
 
 	function refreshLocalHighScore() {
-		highScoreRepository.get().then((score) => {
+		gameState.highScore().then((score) => {
 			streakHighScore = score;
 		});
 	}
 
 	function refreshLocalStreakCount(): void {
-		streakCounterValue = streakCounter.value();
+		streakCounterValue = gameState.currentStreak();
 	}
 
-	async function updateStreakHighScoreIfBetter(newStreakValue: number) {
-		if (newStreakValue > streakHighScore) {
-			highScoreRepository.update(newStreakValue);
-		}
+	function refreshLocalAnswerSelection() {
+		effectivenessSelection = gameState.selectedEffectiveness();
 	}
 
-	function resetAnswerSelection() {
-		effectivenessSelection = undefined;
+	function refreshLocalSelectedIsCorrect() {
+		selectedIsCorrect = gameState.selectedEffectivenessIsCorrect();
+	}
+
+	function refreshLocalCorrectAnswer() {
+		correctEffectiveness = gameState.correctEffectiveness();
 	}
 
 	function handleSelection(effectiveness: Effectiveness) {
-		effectivenessSelection = effectiveness;
-		advanceStreak();
-		if (answerSelectionIsCorrect()) {
-			refreshLocalStreakCount();
-		}
-		updateStreakHighScoreIfBetter(streakCounter.value());
+		gameState.selectEffectiveness(effectiveness);
+		refreshLocalAnswerSelection();
+		refreshLocalSelectedIsCorrect();
+		refreshLocalStreakCount();
 	}
 
 	function resetState() {
-		if (startingANewStreak()) {
+		gameState.proceedToNextScenario();
+		if (gameState.startingANewStreak()) {
 			refreshLocalHighScore();
 		}
 		refreshLocalStreakCount();
-		resetAnswerSelection();
-		generateNewElements();
+		refreshLocalAnswerSelection();
+		refreshLocalScenarioElements();
+		refreshLocalCorrectAnswer();
 	}
+
+	function initialisePageVariables(): void {
+		refreshLocalHighScore();
+		refreshLocalStreakCount();
+		refreshLocalScenarioElements();
+		refreshLocalCorrectAnswer();
+		refreshLocalSelectedIsCorrect();
+	}
+
+	let damageElement: PokemonElement;
+	let defendingElement: PokemonElement;
+	let streakHighScore: number = 0;
+	let streakCounterValue: number = 0;
+	let correctEffectiveness: Effectiveness;
+	let effectivenessSelection: Effectiveness;
+	$: answerSelected = effectivenessSelection !== undefined;
+	let selectedIsCorrect: boolean;
 
 	const effectivenessCalculator = new EffectivenessCalculator();
 	const elementSelector = RandomElementSelector.default();
 	const streakCounter = StreakCounter.default();
 	let highScoreRepository: HighScoreRepository;
+	let gameState: GameState;
 	if (browser) {
 		highScoreRepository = new HighScoreRepository();
-		refreshLocalHighScore();
+		gameState = new GameState(
+			highScoreRepository,
+			effectivenessCalculator,
+			elementSelector,
+			streakCounter
+		);
+		initialisePageVariables();
 	}
-
-	let damageElement = elementSelector.generate();
-	let defendingElement = elementSelector.generate();
-
-	let streakHighScore = 0;
-	$: streakCounterValue = streakCounter.value();
-	$: correctEffectivess = effectivenessCalculator.calculate(damageElement, defendingElement);
-	let effectivenessSelection: Effectiveness;
-	$: answerSelected = effectivenessSelection !== undefined;
-	$: selectedIsCorrect = effectivenessSelection === correctEffectivess;
 </script>
 
 <svelte:head>
@@ -109,7 +110,7 @@
 		{#each EFFECTIVENESSES as eff}
 			<button
 				class="app-btn m-1 flex-grow-0"
-				class:answer-btn--correct={correctEffectivess === eff && answerSelected}
+				class:answer-btn--correct={correctEffectiveness === eff && answerSelected}
 				class:answer-btn--wrong={effectivenessSelection === eff && !selectedIsCorrect}
 				class:app-btn--disabled={answerSelected}
 				disabled={answerSelected}
