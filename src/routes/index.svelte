@@ -53,12 +53,21 @@
 		refreshLocalCorrectAnswer();
 	}
 
-	function initialisePageVariables(): void {
+	function initialiseLocalVariables(): void {
 		refreshLocalHighScore();
 		refreshLocalStreakCount();
 		refreshLocalScenarioElements();
 		refreshLocalCorrectAnswer();
 		refreshLocalSelectedIsCorrect();
+	}
+
+	function initialiseGameState(): void {
+		gameState = new GameState(
+			new HighScoreRepository(),
+			new EffectivenessCalculator(),
+			RandomElementSelector.default(),
+			StreakCounter.default()
+		);
 	}
 
 	let damageElement: PokemonElement;
@@ -70,20 +79,10 @@
 	$: answerSelected = effectivenessSelection !== undefined;
 	let selectedIsCorrect: boolean;
 
-	const effectivenessCalculator = new EffectivenessCalculator();
-	const elementSelector = RandomElementSelector.default();
-	const streakCounter = StreakCounter.default();
-	let highScoreRepository: HighScoreRepository;
 	let gameState: GameState;
 	if (browser) {
-		highScoreRepository = new HighScoreRepository();
-		gameState = new GameState(
-			highScoreRepository,
-			effectivenessCalculator,
-			elementSelector,
-			streakCounter
-		);
-		initialisePageVariables();
+		initialiseGameState();
+		initialiseLocalVariables();
 	}
 </script>
 
