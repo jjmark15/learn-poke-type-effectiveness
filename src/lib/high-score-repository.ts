@@ -5,7 +5,13 @@ const OBJECT_STORE_NAME = 'streak_high_score';
 const HIGH_SCORE_VALUE_KEY = 'count';
 const DB_VERSION = 1;
 
-export class HighScoreRepository {
+export interface HighScoreRepository {
+	get(): Promise<number>;
+
+	update(count: number): Promise<void>;
+}
+
+export class IndexedDbHighScoreRepository implements HighScoreRepository {
 	private dbPromise: Promise<IDBPDatabase>;
 
 	private lazyDbPromise() {

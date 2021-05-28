@@ -2,7 +2,7 @@
 	import { Effectiveness, EFFECTIVENESSES, effectivenessString } from '$lib/effectiveness';
 	import { EffectivenessCalculator } from '$lib/effectiveness-calculator';
 	import { elementString, PokemonElement } from '$lib/element';
-	import { HighScoreRepository } from '$lib/high-score-repository';
+	import { IndexedDbHighScoreRepository } from '$lib/high-score-repository';
 	import { StreakCounter } from '$lib/streak-counter';
 	import { browser } from '$app/env';
 	import { GameState } from '$lib/game-state';
@@ -61,7 +61,7 @@
 
 	function initialiseGameState(): void {
 		gameState = new GameState(
-			new HighScoreRepository(),
+			new IndexedDbHighScoreRepository(),
 			new EffectivenessCalculator(),
 			ExhaustiveScenarioGenerator.default(),
 			StreakCounter.default()
@@ -77,7 +77,7 @@
 	$: answerSelected = effectivenessSelection !== undefined;
 	let selectedIsCorrect: boolean;
 
-	let gameState: GameState;
+	let gameState: GameState<IndexedDbHighScoreRepository, ExhaustiveScenarioGenerator>;
 	if (browser) {
 		initialiseGameState();
 		initialiseLocalVariables();

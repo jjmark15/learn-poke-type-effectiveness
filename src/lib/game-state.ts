@@ -6,18 +6,18 @@ import type { Scenario } from './scenario';
 import type { ScenarioGenerator } from './scenario-generator';
 import type { StreakCounter } from './streak-counter';
 
-export class GameState {
+export class GameState<HSR extends HighScoreRepository, SG extends ScenarioGenerator> {
 	private scenario?: Scenario;
-	private highScoreRepository: HighScoreRepository;
+	private highScoreRepository: HSR;
 	private effectivenessCalculator: EffectivenessCalculator;
-	private scenarioGenerator: ScenarioGenerator;
+	private scenarioGenerator: SG;
 	private streakCounter: StreakCounter;
 	private _selectedEffectiveness?: Effectiveness;
 
 	constructor(
-		highScoreRepository: HighScoreRepository,
+		highScoreRepository: HSR,
 		effectivenessCalculator: EffectivenessCalculator,
-		scenarioGenerator: ScenarioGenerator,
+		scenarioGenerator: SG,
 		streakCounter: StreakCounter
 	) {
 		this.highScoreRepository = highScoreRepository;
