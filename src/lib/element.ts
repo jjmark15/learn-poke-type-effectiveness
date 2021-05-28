@@ -19,7 +19,7 @@ export enum PokemonElement {
 	Water
 }
 
-export const ALL_ELEMENTS: Set<PokemonElement> = new Set([
+export const ELEMENTS: Set<PokemonElement> = new Set([
 	PokemonElement.Bug,
 	PokemonElement.Dark,
 	PokemonElement.Dragon,

@@ -8,11 +8,11 @@ export class ScenarioHistory {
 		this.history = new Map();
 	}
 
-	public clearScenarios(): void {
+	public reset(): void {
 		this.history.clear();
 	}
 
-	public addScenario(scenario: Scenario): void {
+	public record(scenario: Scenario): void {
 		if (!this.history.has(scenario.damageElement())) {
 			this.history.set(scenario.damageElement(), new Set());
 		}

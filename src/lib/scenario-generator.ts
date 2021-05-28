@@ -1,4 +1,4 @@
-import { ALL_ELEMENTS, PokemonElement } from './element';
+import { ELEMENTS, PokemonElement } from './element';
 import { selectRandomMember } from './random';
 import { Scenario } from './scenario';
 import { ScenarioHistory } from './scenario-history';
@@ -17,7 +17,7 @@ export class ExhaustiveScenarioGenerator implements ScenarioGenerator {
 	}
 
 	public static default(): ExhaustiveScenarioGenerator {
-		return new ExhaustiveScenarioGenerator(ALL_ELEMENTS);
+		return new ExhaustiveScenarioGenerator(ELEMENTS);
 	}
 
 	generate(): Scenario {
@@ -44,12 +44,12 @@ export class ExhaustiveScenarioGenerator implements ScenarioGenerator {
 		try {
 			return selectRandomMember(nonExhausted);
 		} catch (error) {
-			this.scenarioHistory.clearScenarios();
+			this.scenarioHistory.reset();
 			return this.getRandomNonExhaustedDamageElement();
 		}
 	}
 
 	private addScenarioToHistory(scenario: Scenario): void {
-		this.scenarioHistory.addScenario(scenario);
+		this.scenarioHistory.record(scenario);
 	}
 }
