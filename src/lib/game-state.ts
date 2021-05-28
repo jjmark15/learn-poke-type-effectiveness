@@ -2,27 +2,27 @@ import type { Effectiveness } from './effectiveness';
 import type { EffectivenessCalculator } from './effectiveness-calculator';
 import type { PokemonElement } from './element';
 import type { HighScoreRepository } from './high-score-repository';
-import type { RandomElementSelector } from './random-element-selector';
-import { Scenario } from './scenario';
+import type { Scenario } from './scenario';
+import type { ScenarioGenerator } from './scenario-generator';
 import type { StreakCounter } from './streak-counter';
 
 export class GameState {
 	private scenario?: Scenario;
 	private highScoreRepository: HighScoreRepository;
 	private effectivenessCalculator: EffectivenessCalculator;
-	private elementSelector: RandomElementSelector;
+	private scenarioGenerator: ScenarioGenerator;
 	private streakCounter: StreakCounter;
 	private _selectedEffectiveness?: Effectiveness;
 
 	constructor(
 		highScoreRepository: HighScoreRepository,
 		effectivenessCalculator: EffectivenessCalculator,
-		elementSelector: RandomElementSelector,
+		scenarioGenerator: ScenarioGenerator,
 		streakCounter: StreakCounter
 	) {
 		this.highScoreRepository = highScoreRepository;
 		this.effectivenessCalculator = effectivenessCalculator;
-		this.elementSelector = elementSelector;
+		this.scenarioGenerator = scenarioGenerator;
 		this.streakCounter = streakCounter;
 		this.generateNewScenario();
 	}
@@ -49,7 +49,7 @@ export class GameState {
 	}
 
 	private generateNewScenario(): void {
-		this.scenario = new Scenario(this.elementSelector.generate(), this.elementSelector.generate());
+		this.scenario = this.scenarioGenerator.generate();
 	}
 
 	public damageElement(): PokemonElement {

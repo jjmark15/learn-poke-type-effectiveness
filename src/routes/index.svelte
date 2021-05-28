@@ -3,10 +3,10 @@
 	import { EffectivenessCalculator } from '$lib/effectiveness-calculator';
 	import { elementString, PokemonElement } from '$lib/element';
 	import { HighScoreRepository } from '$lib/high-score-repository';
-	import { RandomElementSelector } from '$lib/random-element-selector';
 	import { StreakCounter } from '$lib/streak-counter';
 	import { browser } from '$app/env';
 	import { GameState } from '$lib/game-state';
+	import { ExhaustiveScenarioGenerator } from '$lib/scenario-generator';
 
 	function refreshLocalScenarioElements() {
 		damageElement = gameState.damageElement();
@@ -63,7 +63,7 @@
 		gameState = new GameState(
 			new HighScoreRepository(),
 			new EffectivenessCalculator(),
-			RandomElementSelector.default(),
+			ExhaustiveScenarioGenerator.default(),
 			StreakCounter.default()
 		);
 	}
