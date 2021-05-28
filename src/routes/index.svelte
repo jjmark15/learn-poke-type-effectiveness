@@ -13,10 +13,8 @@
 		defendingElement = gameState.defendingElement();
 	}
 
-	function refreshLocalHighScore() {
-		gameState.highScore().then((score) => {
-			streakHighScore = score;
-		});
+	async function refreshLocalHighScore() {
+		streakHighScore = await gameState.highScore();
 	}
 
 	function refreshLocalStreakCount(): void {

@@ -87,7 +87,7 @@ export class GameState {
 	private async updateStreakHighScoreIfBetter(newStreakValue: number) {
 		const oldStreakValue: number = await this.highScoreRepository.get();
 		if (newStreakValue > oldStreakValue) {
-			this.highScoreRepository.update(newStreakValue);
+			await this.highScoreRepository.update(newStreakValue);
 		}
 	}
 }

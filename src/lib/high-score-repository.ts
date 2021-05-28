@@ -30,6 +30,6 @@ export class HighScoreRepository {
 
 	public async update(count: number): Promise<void> {
 		const db = await this.lazyDbPromise();
-		db.put(OBJECT_STORE_NAME, count, HIGH_SCORE_VALUE_KEY);
+		await db.put(OBJECT_STORE_NAME, count, HIGH_SCORE_VALUE_KEY);
 	}
 }
