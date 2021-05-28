@@ -1,4 +1,4 @@
-import { PokemonElement } from './element';
+import { ALL_ELEMENTS, PokemonElement } from './element';
 import { selectRandomMember } from './random';
 import { Scenario } from './scenario';
 import { ScenarioHistory } from './scenario-history';
@@ -17,28 +17,7 @@ export class ExhaustiveScenarioGenerator implements ScenarioGenerator {
 	}
 
 	public static default(): ExhaustiveScenarioGenerator {
-		return new ExhaustiveScenarioGenerator(
-			new Set([
-				PokemonElement.Bug,
-				PokemonElement.Dark,
-				PokemonElement.Dragon,
-				PokemonElement.Electric,
-				PokemonElement.Fairy,
-				PokemonElement.Fighting,
-				PokemonElement.Fire,
-				PokemonElement.Flying,
-				PokemonElement.Ghost,
-				PokemonElement.Grass,
-				PokemonElement.Ground,
-				PokemonElement.Ice,
-				PokemonElement.Normal,
-				PokemonElement.Poison,
-				PokemonElement.Psychic,
-				PokemonElement.Rock,
-				PokemonElement.Steel,
-				PokemonElement.Water
-			])
-		);
+		return new ExhaustiveScenarioGenerator(ALL_ELEMENTS);
 	}
 
 	generate(): Scenario {

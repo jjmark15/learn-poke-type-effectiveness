@@ -19,6 +19,27 @@ export enum PokemonElement {
 	Water
 }
 
+export const ALL_ELEMENTS: Set<PokemonElement> = new Set([
+	PokemonElement.Bug,
+	PokemonElement.Dark,
+	PokemonElement.Dragon,
+	PokemonElement.Electric,
+	PokemonElement.Fairy,
+	PokemonElement.Fighting,
+	PokemonElement.Fire,
+	PokemonElement.Flying,
+	PokemonElement.Ghost,
+	PokemonElement.Grass,
+	PokemonElement.Ground,
+	PokemonElement.Ice,
+	PokemonElement.Normal,
+	PokemonElement.Poison,
+	PokemonElement.Psychic,
+	PokemonElement.Rock,
+	PokemonElement.Steel,
+	PokemonElement.Water
+]);
+
 export function elementString(element: PokemonElement): string {
 	switch (element) {
 		case PokemonElement.Bug:
