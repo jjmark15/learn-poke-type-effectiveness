@@ -1,16 +1,16 @@
 <script lang="ts">
 	import { Effectiveness, EFFECTIVENESSES, effectivenessString } from '$lib/effectiveness';
 	import { EffectivenessCalculator } from '$lib/effectiveness-calculator';
-	import { elementString, PokemonElement } from '$lib/element';
+	import { elementString } from '$lib/element';
 	import { IndexedDbHighScoreRepository } from '$lib/high-score-repository';
 	import { StreakCounter } from '$lib/streak-counter';
 	import { browser } from '$app/env';
 	import { GameState } from '$lib/game-state';
 	import { ExhaustiveScenarioGenerator } from '$lib/scenario-generator';
+	import type { Scenario } from '$lib/scenario';
 
-	function refreshLocalScenarioElements() {
-		damageElement = gameState.damageElement();
-		defendingElement = gameState.defendingElement();
+	function refreshLocalScenario() {
+		scenario = gameState.scenario();
 	}
 
 	async function refreshLocalHighScore() {
@@ -47,14 +47,14 @@
 		}
 		refreshLocalStreakCount();
 		refreshLocalAnswerSelection();
-		refreshLocalScenarioElements();
+		refreshLocalScenario();
 		refreshLocalCorrectAnswer();
 	}
 
 	function initialiseLocalVariables(): void {
 		refreshLocalHighScore();
 		refreshLocalStreakCount();
-		refreshLocalScenarioElements();
+		refreshLocalScenario();
 		refreshLocalCorrectAnswer();
 		refreshLocalSelectedIsCorrect();
 	}
@@ -68,8 +68,7 @@
 		);
 	}
 
-	let damageElement: PokemonElement;
-	let defendingElement: PokemonElement;
+	let scenario: Scenario;
 	let streakHighScore: number = 0;
 	let streakCounterValue: number = 0;
 	let correctEffectiveness: Effectiveness;
@@ -97,7 +96,9 @@
 	<div class="flex flex-col flex-grow justify-center mb-2">
 		<p class="text-7xl text-center text-pink-200">
 			{#if browser}
-				{elementString(damageElement)} attacks {elementString(defendingElement)}
+				{elementString(scenario.damageElement())} attacks {elementString(
+					scenario.defendingElement()
+				)}
 			{:else}
 				Loading
 			{/if}

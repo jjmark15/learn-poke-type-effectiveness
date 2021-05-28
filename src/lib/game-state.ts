@@ -1,13 +1,12 @@
 import type { Effectiveness } from './effectiveness';
 import type { EffectivenessCalculator } from './effectiveness-calculator';
-import type { PokemonElement } from './element';
 import type { HighScoreRepository } from './high-score-repository';
 import type { Scenario } from './scenario';
 import type { ScenarioGenerator } from './scenario-generator';
 import type { StreakCounter } from './streak-counter';
 
 export class GameState<HSR extends HighScoreRepository, SG extends ScenarioGenerator> {
-	private scenario?: Scenario;
+	private _scenario?: Scenario;
 	private highScoreRepository: HSR;
 	private effectivenessCalculator: EffectivenessCalculator;
 	private scenarioGenerator: SG;
@@ -29,8 +28,8 @@ export class GameState<HSR extends HighScoreRepository, SG extends ScenarioGener
 
 	public correctEffectiveness(): Effectiveness {
 		return this.effectivenessCalculator.calculate(
-			this.scenario.damageElement(),
-			this.scenario.defendingElement()
+			this._scenario.damageElement(),
+			this._scenario.defendingElement()
 		);
 	}
 
@@ -49,15 +48,11 @@ export class GameState<HSR extends HighScoreRepository, SG extends ScenarioGener
 	}
 
 	private generateNewScenario(): void {
-		this.scenario = this.scenarioGenerator.generate();
+		this._scenario = this.scenarioGenerator.generate();
 	}
 
-	public damageElement(): PokemonElement {
-		return this.scenario.damageElement();
-	}
-
-	public defendingElement(): PokemonElement {
-		return this.scenario.defendingElement();
+	public scenario(): Scenario {
+		return this._scenario;
 	}
 
 	public async highScore(): Promise<number> {
