@@ -3,11 +3,11 @@ import type { EffectivenessCalculator } from './effectiveness-calculator';
 import type { PokemonElement } from './element';
 import type { HighScoreRepository } from './high-score-repository';
 import type { RandomElementSelector } from './random-element-selector';
+import { Scenario } from './scenario';
 import type { StreakCounter } from './streak-counter';
 
 export class GameState {
-	private _damageElement?: PokemonElement;
-	private _defendingElement?: PokemonElement;
+	private scenario?: Scenario;
 	private highScoreRepository: HighScoreRepository;
 	private effectivenessCalculator: EffectivenessCalculator;
 	private elementSelector: RandomElementSelector;
@@ -28,7 +28,10 @@ export class GameState {
 	}
 
 	public correctEffectiveness(): Effectiveness {
-		return this.effectivenessCalculator.calculate(this._damageElement, this._defendingElement);
+		return this.effectivenessCalculator.calculate(
+			this.scenario.damageElement(),
+			this.scenario.defendingElement()
+		);
 	}
 
 	public selectEffectiveness(effectiveness: Effectiveness): void {
@@ -46,16 +49,15 @@ export class GameState {
 	}
 
 	private generateNewScenario(): void {
-		this._damageElement = this.elementSelector.generate();
-		this._defendingElement = this.elementSelector.generate();
+		this.scenario = new Scenario(this.elementSelector.generate(), this.elementSelector.generate());
 	}
 
 	public damageElement(): PokemonElement {
-		return this._damageElement;
+		return this.scenario.damageElement();
 	}
 
 	public defendingElement(): PokemonElement {
-		return this._defendingElement;
+		return this.scenario.defendingElement();
 	}
 
 	public async highScore(): Promise<number> {
