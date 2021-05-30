@@ -56,7 +56,7 @@ export class GameState<HSR extends HighScoreRepository, SG extends ScenarioGener
 	}
 
 	public async highScore(): Promise<number> {
-		return (await this.highScoreRepository.get()).unwrapOr(0);
+		return await this.highScoreRepository.get();
 	}
 
 	public currentStreak(): number {
@@ -82,7 +82,7 @@ export class GameState<HSR extends HighScoreRepository, SG extends ScenarioGener
 	}
 
 	private async updateStreakHighScoreIfBetter(newStreakValue: number) {
-		const oldStreakValue: number = await this.highScore();
+		const oldStreakValue: number = await this.highScoreRepository.get();
 		if (newStreakValue > oldStreakValue) {
 			await this.highScoreRepository.update(newStreakValue);
 		}

@@ -34,19 +34,18 @@ export class ExhaustiveScenarioGenerator implements ScenarioGenerator {
 		const remaining = [...this.elements].filter((element) => {
 			return !exclusions.has(element);
 		});
-		return selectRandomMember(remaining).unwrap();
+		return selectRandomMember(remaining);
 	}
 
 	private getRandomNonExhaustedDamageElement(): PokemonElement {
 		const nonExhausted: Array<PokemonElement> = [...this.elements].filter((element) => {
 			return !this.scenarioHistory.damageElementScenariosAreExhausted(element, this.elements);
 		});
-		const selectRandomMemberResult = selectRandomMember(nonExhausted);
-		if (selectRandomMemberResult.err) {
+		try {
+			return selectRandomMember(nonExhausted);
+		} catch (error) {
 			this.scenarioHistory.reset();
 			return this.getRandomNonExhaustedDamageElement();
-		} else {
-			return selectRandomMemberResult.unwrap();
 		}
 	}
 

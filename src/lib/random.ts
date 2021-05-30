@@ -1,16 +1,8 @@
-import { Result, Err, Ok } from 'ts-results';
-
-export function selectRandomMember<T>(list: Array<T>): Result<T, EmptyListError> {
+export function selectRandomMember<T>(list: Array<T>): T {
 	const length = list.length;
 	if (length === 0) {
-		return new Err(new EmptyListError());
+		throw new Error('cannot select random member from empty list');
 	}
 	const index = Math.floor(Math.random() * length);
-	return new Ok(list[index]);
-}
-
-export class EmptyListError extends Error {
-	constructor() {
-		super('cannot select random member from empty list');
-	}
+	return list[index];
 }
