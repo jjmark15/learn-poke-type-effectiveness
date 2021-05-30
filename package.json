@@ -31,6 +31,7 @@
   },
   "type": "module",
   "dependencies": {
-    "idb": "^6.0.0"
+    "idb": "^6.0.0",
+    "ts-results": "^3.3.0"
   }
 }
