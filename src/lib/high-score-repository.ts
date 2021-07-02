@@ -1,4 +1,5 @@
 import { IDBPDatabase, openDB } from 'idb';
+import idbReady from 'safari-14-idb-fix';
 
 const DATABASE_NAME = 'type_effec_learning';
 const OBJECT_STORE_NAME = 'streak_high_score';
@@ -16,10 +17,12 @@ export class IndexedDbHighScoreRepository implements HighScoreRepository {
 
 	private lazyDbPromise() {
 		if (this.dbPromise === undefined) {
-			this.dbPromise = openDB(DATABASE_NAME, DB_VERSION, {
-				upgrade(db) {
-					db.createObjectStore(OBJECT_STORE_NAME);
-				}
+			this.dbPromise = idbReady().then(() => {
+				return openDB(DATABASE_NAME, DB_VERSION, {
+					upgrade(db) {
+						db.createObjectStore(OBJECT_STORE_NAME);
+					}
+				});
 			});
 		}
 		return this.dbPromise;
