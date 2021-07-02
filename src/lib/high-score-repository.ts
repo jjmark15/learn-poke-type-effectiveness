@@ -15,16 +15,17 @@ export interface HighScoreRepository {
 export class IndexedDbHighScoreRepository implements HighScoreRepository {
 	private dbPromise: Promise<IDBPDatabase>;
 
-	private lazyDbPromise() {
+	private async lazyDbPromise(): Promise<IDBPDatabase> {
 		if (this.dbPromise === undefined) {
-			this.dbPromise = idbReady().then(() => {
-				return openDB(DATABASE_NAME, DB_VERSION, {
-					upgrade(db) {
-						db.createObjectStore(OBJECT_STORE_NAME);
-					}
-				});
+			await idbReady();
+
+			this.dbPromise = openDB(DATABASE_NAME, DB_VERSION, {
+				upgrade(db) {
+					db.createObjectStore(OBJECT_STORE_NAME);
+				}
 			});
 		}
+
 		return this.dbPromise;
 	}
 
