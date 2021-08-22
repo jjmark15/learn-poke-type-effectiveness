@@ -1,5 +1,5 @@
-import { IDBPDatabase, openDB } from 'idb';
-import idbReady from 'safari-14-idb-fix';
+import { openDB } from 'idb';
+import type { IDBPDatabase } from 'idb';
 
 const DATABASE_NAME = 'type_effec_learning';
 const OBJECT_STORE_NAME = 'streak_high_score';
@@ -13,9 +13,9 @@ export interface HighScoreRepository {
 }
 
 export class IndexedDbHighScoreRepository implements HighScoreRepository {
-	private dbPromise: Promise<IDBPDatabase>;
+	private dbPromise: Promise<IDBPDatabase<unknown>>;
 
-	private async lazyDbPromise(): Promise<IDBPDatabase> {
+	private async lazyDbPromise(): Promise<IDBPDatabase<unknown>> {
 		if (this.dbPromise === undefined) {
 			await idbReady();
 
@@ -42,4 +42,22 @@ export class IndexedDbHighScoreRepository implements HighScoreRepository {
 		const db = await this.lazyDbPromise();
 		await db.put(OBJECT_STORE_NAME, count, HIGH_SCORE_VALUE_KEY);
 	}
+}
+
+function idbReady(): Promise<void> {
+	const isSafari =
+		!navigator.userAgentData &&
+		/Safari\//.test(navigator.userAgent) &&
+		!/Chrom(e|ium)\//.test(navigator.userAgent);
+
+	// No point putting other browsers or older versions of Safari through this mess.
+	if (!isSafari || !indexedDB.databases) return Promise.resolve();
+
+	let intervalId: NodeJS.Timer;
+
+	return new Promise<void>((resolve) => {
+		const tryIdb = () => indexedDB.databases().finally(resolve);
+		intervalId = setInterval(tryIdb, 100);
+		tryIdb();
+	}).finally(() => clearInterval(intervalId));
 }

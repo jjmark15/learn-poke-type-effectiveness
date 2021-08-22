@@ -1,10 +1,12 @@
 .vscode
 .idea
 
+.DS_Store
 node_modules
-
-build
-.svelte
+/build
+/.svelte-kit
+/package
+.pnpm-debug.log
 
 # netlify
-functions
+.netlify
