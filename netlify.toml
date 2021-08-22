@@ -8,4 +8,7 @@
   publish = "build"
 
   # Default build command.
-  command = "pnpm build"
+  command = "./scripts/netlify.sh"
+
+[build.environment]
+  NPM_FLAGS="--prefix=./scripts/empty-project/"
