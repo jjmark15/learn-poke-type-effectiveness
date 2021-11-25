@@ -106,6 +106,7 @@ export class EffectivenessCalculator {
 				PokemonElement.Ice,
 				PokemonElement.Bug,
 				PokemonElement.Dark,
+				PokemonElement.Rock,
 				PokemonElement.Steel
 			]
 		).effectiveness(defendingElement);
