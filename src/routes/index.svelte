@@ -87,42 +87,44 @@
 	<title>Learn Pokemon Type Effectiveness</title>
 </svelte:head>
 
-<div class="h-full text-3xl flex flex-col justify-end sm:justify-center">
+<div class="h-full text-3xl flex flex-col">
 	<div class="flex flex-row justify-start">
 		<p>
 			Current streak: {streakCounterValue} <span class="text-gray-500">({streakHighScore})</span>
 		</p>
 	</div>
-	<div class="flex flex-col flex-grow justify-center mb-2">
-		<p class="text-7xl text-center text-pink-200">
-			{#if browser}
-				{elementString(scenario.damageElement())} attacks {elementString(
-					scenario.defendingElement()
-				)}
-			{:else}
-				Loading
-			{/if}
-		</p>
-	</div>
-	<div class="flex flex-row flex-wrap mb-2 justify-center">
-		{#each EFFECTIVENESSES as eff}
+	<div class="flex flex-col flex-grow justify-center">
+		<div class="flex flex-col flex-grow justify-center mb-2">
+			<p class="text-7xl text-center text-pink-200">
+				{#if browser}
+					{elementString(scenario.damageElement())} attacks {elementString(
+						scenario.defendingElement()
+					)}
+				{:else}
+					Loading
+				{/if}
+			</p>
+		</div>
+		<div class="flex flex-row flex-wrap mb-2 justify-center">
+			{#each EFFECTIVENESSES as eff}
+				<button
+					class="app-btn m-1 flex-grow-0"
+					class:answer-btn--correct={correctEffectiveness === eff && answerSelected}
+					class:answer-btn--wrong={effectivenessSelection === eff && !selectedIsCorrect}
+					class:app-btn--disabled={answerSelected}
+					disabled={answerSelected}
+					on:click={() => handleSelection(eff)}>{effectivenessString(eff)}</button
+				>
+			{/each}
+		</div>
+		<div class="flex flex-col flex-grow-0 justify-center sm:flex-grow">
 			<button
-				class="app-btn m-1 flex-grow-0"
-				class:answer-btn--correct={correctEffectiveness === eff && answerSelected}
-				class:answer-btn--wrong={effectivenessSelection === eff && !selectedIsCorrect}
-				class:app-btn--disabled={answerSelected}
-				disabled={answerSelected}
-				on:click={() => handleSelection(eff)}>{effectivenessString(eff)}</button
+				disabled={!answerSelected}
+				class="flex-grow-0 mx-auto app-btn"
+				class:app-btn--disabled={!answerSelected}
+				on:click={resetState}>Next</button
 			>
-		{/each}
-	</div>
-	<div class="flex flex-col flex-grow-0 justify-center sm:flex-grow">
-		<button
-			disabled={!answerSelected}
-			class="flex-grow-0 mx-auto app-btn"
-			class:app-btn--disabled={!answerSelected}
-			on:click={resetState}>Next</button
-		>
+		</div>
 	</div>
 </div>
 
