@@ -12,4 +12,6 @@
 	{/if}
 </svelte:head>
 
-<slot />
+<div class="bg-gray-900 text-white p-4 flex-grow">
+	<slot />
+</div>
