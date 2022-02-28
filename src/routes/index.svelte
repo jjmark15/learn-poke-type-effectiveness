@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Effectiveness, EFFECTIVENESSES, effectivenessString } from '$lib/effectiveness';
+	import { Effectiveness, EFFECTIVENESSES } from '$lib/effectiveness';
 	import { EffectivenessCalculator } from '$lib/effectiveness-calculator';
 	import { elementString } from '$lib/element';
 	import { IndexedDbHighScoreRepository } from '$lib/high-score-repository';
@@ -11,6 +11,7 @@
 	import DarkToggle from '$lib/DarkToggle.svelte';
 	import EffectivenessButton from '$lib/EffectivenessButton.svelte';
 	import Button from '$lib/Button.svelte';
+	import StreakCounterView from '$lib/StreakCounterView.svelte';
 
 	function refreshLocalScenario() {
 		scenario = gameState.scenario();
@@ -85,9 +86,7 @@
 
 <div class="h-full text-3xl flex flex-grow flex-col">
 	<div class="flex flex-row justify-start">
-		<p class="flex-grow dark:text-white">
-			Current streak: {streakCounterValue} <span class="text-pink-50 dark:text-gray-500">({streakHighScore})</span>
-		</p>
+		<StreakCounterView class="flex-grow" streak={streakCounterValue} bestStreak={streakHighScore} />
 		<DarkToggle />
 	</div>
 	<div class="flex flex-col flex-grow justify-center">
