@@ -85,14 +85,14 @@
 
 <div class="h-full text-3xl flex flex-grow flex-col">
 	<div class="flex flex-row justify-start">
-		<p class="flex-grow">
-			Current streak: {streakCounterValue} <span class="text-gray-500">({streakHighScore})</span>
+		<p class="flex-grow dark:text-white">
+			Current streak: {streakCounterValue} <span class="text-pink-50 dark:text-gray-500">({streakHighScore})</span>
 		</p>
 		<DarkToggle />
 	</div>
 	<div class="flex flex-col flex-grow justify-center">
 		<div class="flex flex-col flex-grow justify-center mb-2">
-			<p class="text-7xl text-center text-pink-200">
+			<p class="text-7xl text-center text-gray-900 dark:text-pink-200">
 				{#if browser}
 					{elementString(scenario.damageElement())} attacks {elementString(
 						scenario.defendingElement()

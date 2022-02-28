@@ -14,7 +14,7 @@
 </svelte:head>
 
 <div class:dark={$dark === true} class="flex flex-grow">
-	<div class="bg-white dark:bg-gray-900 text-white p-4 flex-grow flex">
+	<div class="bg-pink-200 dark:bg-gray-900 text-gray-700 dark:text-white p-4 flex-grow flex">
 		<slot />
 	</div>
 </div>
