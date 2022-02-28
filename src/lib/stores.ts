@@ -8,6 +8,11 @@ function getStored(): boolean {
 		return true;
 	}
 	const result = localStorage.getItem(theme_store_name);
+
+	if (result === null) {
+		return true;
+	}
+
 	return result === 'true';
 }
 
