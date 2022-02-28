@@ -9,6 +9,7 @@
 	import { ExhaustiveScenarioGenerator } from '$lib/scenario-generator';
 	import type { Scenario } from '$lib/scenario';
 	import DarkToggle from '$lib/DarkToggle.svelte';
+	import EffectivenessButton from '$lib/EffectivenessButton.svelte';
 
 	function refreshLocalScenario() {
 		scenario = gameState.scenario();
@@ -109,14 +110,9 @@
 		</div>
 		<div class="flex flex-row flex-wrap mb-2 justify-center">
 			{#each EFFECTIVENESSES as eff}
-				<button
-					class="app-btn m-1 flex-grow-0"
-					class:answer-btn--correct={correctEffectiveness === eff && answerSelected}
-					class:answer-btn--wrong={effectivenessSelection === eff && !selectedIsCorrect}
-					class:app-btn--disabled={answerSelected}
-					disabled={answerSelected}
-					on:click={() => handleSelection(eff)}>{effectivenessString(eff)}</button
-				>
+				<EffectivenessButton isCorrect={eff === correctEffectiveness} effectiveness={eff}
+				disabled={answerSelected}
+				on:click={() => handleSelection(eff)} />
 			{/each}
 		</div>
 		<div class="flex flex-col flex-grow-0 justify-center sm:flex-grow">
@@ -137,13 +133,5 @@
 
 	.app-btn--disabled {
 		@apply text-gray-500 border-gray-500 border-dashed;
-	}
-
-	.answer-btn--correct {
-		@apply border-green-300 text-green-300;
-	}
-
-	.answer-btn--wrong {
-		@apply border-red-500 text-red-500;
 	}
 </style>
