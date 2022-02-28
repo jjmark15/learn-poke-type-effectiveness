@@ -38,7 +38,7 @@
 
 <style>
 	.btn {
-		@apply py-1 px-2 rounded-lg bg-pink-100 shadow-sm border-2 border-transparent;
+		@apply py-1 px-2 rounded-lg bg-pink-100 shadow-md border-2 border-transparent;
 	}
 
 	.btn--dark {
@@ -46,7 +46,7 @@
 	}
 
 	.btn--disabled {
-		@apply text-pink-200 border-dashed;
+		@apply text-pink-200;
 	}
 
 	.btn--disabled-dark {
