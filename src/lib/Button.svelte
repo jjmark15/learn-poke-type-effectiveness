@@ -30,14 +30,14 @@
 	}
 
 	.btn--dark {
-		@apply text-white bg-transparent border-pink-200;
+		@apply text-gray-50 bg-gray-800;
 	}
 
 	.btn--disabled {
-		@apply text-pink-200 bg-pink-100 border-dashed;
+		@apply text-pink-200 border-dashed;
 	}
 
 	.btn--disabled-dark {
-		@apply text-gray-500 bg-transparent border-gray-500;
+		@apply text-gray-500;
 	}
 </style>
