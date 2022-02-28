@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { Effectiveness, EFFECTIVENESSES } from '$lib/effectiveness';
 	import { EffectivenessCalculator } from '$lib/effectiveness-calculator';
-	import { elementString } from '$lib/element';
 	import { IndexedDbHighScoreRepository } from '$lib/high-score-repository';
 	import { StreakCounter } from '$lib/streak-counter';
 	import { browser } from '$app/env';
@@ -12,6 +11,7 @@
 	import EffectivenessButton from '$lib/EffectivenessButton.svelte';
 	import Button from '$lib/Button.svelte';
 	import StreakCounterView from '$lib/StreakCounterView.svelte';
+	import ScenarioView from '$lib/ScenarioView.svelte';
 
 	function refreshLocalScenario() {
 		scenario = gameState.scenario();
@@ -91,15 +91,11 @@
 	</div>
 	<div class="flex flex-col flex-grow justify-center">
 		<div class="flex flex-col flex-grow justify-center mb-2">
-			<p class="text-7xl text-center text-gray-900 dark:text-pink-200">
-				{#if browser}
-					{elementString(scenario.damageElement())} attacks {elementString(
-						scenario.defendingElement()
-					)}
-				{:else}
-					Loading
-				{/if}
-			</p>
+			{#if browser}
+				<ScenarioView {scenario} />
+			{:else}
+				<p class="text-7xl text-center text-gray-900 dark:text-pink-200">Loading</p>
+			{/if}
 		</div>
 		<div class="flex flex-row flex-wrap mb-2 justify-center">
 			{#each EFFECTIVENESSES as eff}
