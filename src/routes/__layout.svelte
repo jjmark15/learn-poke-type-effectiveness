@@ -1,6 +1,7 @@
-<script>
+<script lang="ts">
 	import '../app.css';
 	import { browser } from '$app/env';
+	import { dark } from '../lib/stores';
 </script>
 
 <svelte:head>
@@ -12,6 +13,8 @@
 	{/if}
 </svelte:head>
 
-<div class="bg-gray-900 text-white p-4 flex-grow">
-	<slot />
+<div class:dark={$dark === true} class="flex flex-grow">
+	<div class="bg-white dark:bg-gray-900 text-white p-4 flex-grow flex">
+		<slot />
+	</div>
 </div>

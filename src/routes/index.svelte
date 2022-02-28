@@ -8,6 +8,7 @@
 	import { GameState } from '$lib/game-state';
 	import { ExhaustiveScenarioGenerator } from '$lib/scenario-generator';
 	import type { Scenario } from '$lib/scenario';
+	import DarkToggle from '$lib/DarkToggle.svelte';
 
 	function refreshLocalScenario() {
 		scenario = gameState.scenario();
@@ -87,11 +88,12 @@
 	<title>Learn Pokemon Type Effectiveness</title>
 </svelte:head>
 
-<div class="h-full text-3xl flex flex-col">
+<div class="h-full text-3xl flex flex-grow flex-col">
 	<div class="flex flex-row justify-start">
-		<p>
+		<p class="flex-grow">
 			Current streak: {streakCounterValue} <span class="text-gray-500">({streakHighScore})</span>
 		</p>
+		<DarkToggle />
 	</div>
 	<div class="flex flex-col flex-grow justify-center">
 		<div class="flex flex-col flex-grow justify-center mb-2">
