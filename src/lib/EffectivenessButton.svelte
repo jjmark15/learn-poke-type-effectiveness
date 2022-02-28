@@ -38,19 +38,19 @@
 
 <style>
 	.btn {
-		@apply py-1 px-2 border-solid border-2 rounded-lg border-white;
+		@apply py-1 px-2 rounded-lg bg-pink-100 shadow-sm border-2 border-transparent;
 	}
 
 	.btn--dark {
-		@apply border-pink-200 text-white;
+		@apply text-white bg-transparent border-pink-200;
 	}
 
 	.btn--disabled {
-		@apply text-pink-50 border-pink-50 border-dashed;
+		@apply text-pink-200 bg-pink-100 border-dashed;
 	}
 
 	.btn--disabled-dark {
-		@apply text-gray-500 border-gray-500 border-dashed;
+		@apply text-gray-500 bg-transparent border-gray-500;
 	}
 
 	.btn--correct {
