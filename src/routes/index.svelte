@@ -28,10 +28,6 @@
 		effectivenessSelection = gameState.selectedEffectiveness();
 	}
 
-	function refreshLocalSelectedIsCorrect() {
-		selectedIsCorrect = gameState.selectedEffectivenessIsCorrect();
-	}
-
 	function refreshLocalCorrectAnswer() {
 		correctEffectiveness = gameState.correctEffectiveness();
 	}
@@ -39,7 +35,6 @@
 	function handleSelection(effectiveness: Effectiveness) {
 		gameState.selectEffectiveness(effectiveness);
 		refreshLocalAnswerSelection();
-		refreshLocalSelectedIsCorrect();
 		refreshLocalStreakCount();
 	}
 
@@ -59,7 +54,6 @@
 		refreshLocalStreakCount();
 		refreshLocalScenario();
 		refreshLocalCorrectAnswer();
-		refreshLocalSelectedIsCorrect();
 	}
 
 	function initialiseGameState(): void {
@@ -77,7 +71,6 @@
 	let correctEffectiveness: Effectiveness;
 	let effectivenessSelection: Effectiveness;
 	$: answerSelected = effectivenessSelection !== undefined;
-	let selectedIsCorrect: boolean;
 
 	let gameState: GameState<IndexedDbHighScoreRepository, ExhaustiveScenarioGenerator>;
 	if (browser) {
