@@ -42,7 +42,7 @@
 	}
 
 	.btn--dark {
-		@apply text-gray-50 bg-gray-800;
+		@apply text-gray-50 bg-gray-700;
 	}
 
 	.btn--disabled {
@@ -50,7 +50,7 @@
 	}
 
 	.btn--disabled-dark {
-		@apply text-gray-500;
+		@apply text-gray-500 bg-gray-800;
 	}
 
 	.btn--correct {
