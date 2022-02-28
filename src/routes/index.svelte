@@ -7,7 +7,7 @@
 	import { GameState } from '$lib/game-state';
 	import { ExhaustiveScenarioGenerator } from '$lib/scenario-generator';
 	import type { Scenario } from '$lib/scenario';
-	import DarkToggle from '$lib/DarkToggle.svelte';
+	import DarkToggle from '$lib/DarkModeToggle.svelte';
 	import EffectivenessButton from '$lib/EffectivenessButton.svelte';
 	import Button from '$lib/Button.svelte';
 	import StreakCounterView from '$lib/StreakCounterView.svelte';

@@ -11,7 +11,7 @@
 	{#if browser}
 		<meta property="og:url" content={window.location.href} />;
 	{/if}
-	<meta name="theme-color" content="{ $dark ? "#111827" : "#fbcfe8"}" />
+	<meta name="theme-color" content={$dark ? '#111827' : '#fbcfe8'} />
 </svelte:head>
 
 <div class:dark={$dark === true} class="flex flex-grow">

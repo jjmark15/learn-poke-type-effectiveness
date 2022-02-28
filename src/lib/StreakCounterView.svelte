@@ -1,6 +1,6 @@
 <script lang="ts">
-    export let streak: number = 0;
-    export let bestStreak: number = 0;
+	export let streak: number = 0;
+	export let bestStreak: number = 0;
 	let classNames: string = '';
 	export { classNames as class };
 </script>
