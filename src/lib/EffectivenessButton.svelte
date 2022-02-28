@@ -6,6 +6,8 @@
 	export let isCorrect: boolean;
 	export let disabled: boolean = false;
 	export let effectiveness: Effectiveness;
+	let classNames: string = '';
+	export { classNames as class };
 
 	const dispatch = createEventDispatcher();
 	const click = () => dispatch('click');
@@ -23,7 +25,7 @@
 </script>
 
 <button
-	class="app-btn m-1 flex-grow-0"
+	class="app-btn {classNames}"
 	class:answer-btn--correct={isCorrect && (isSelected || disabled)}
 	class:answer-btn--wrong={!isCorrect && isSelected}
 	class:app-btn--disabled={disabled}

@@ -112,6 +112,7 @@
 		<div class="flex flex-row flex-wrap mb-2 justify-center">
 			{#each EFFECTIVENESSES as eff}
 				<EffectivenessButton
+					class="m-1 flex-grow-0"
 					isCorrect={eff === correctEffectiveness}
 					effectiveness={eff}
 					disabled={answerSelected}
@@ -120,7 +121,12 @@
 			{/each}
 		</div>
 		<div class="flex flex-col flex-grow-0 justify-center sm:flex-grow">
-			<Button text="Next" disabled={!answerSelected} on:click={resetState} />
+			<Button
+				class="mx-auto flex-grow-0"
+				text="Next"
+				disabled={!answerSelected}
+				on:click={resetState}
+			/>
 		</div>
 	</div>
 </div>

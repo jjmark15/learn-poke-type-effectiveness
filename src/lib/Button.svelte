@@ -3,6 +3,8 @@
 
 	export let disabled: boolean = false;
 	export let text: string;
+	let classNames: string = '';
+	export { classNames as class };
 
 	const dispatch = createEventDispatcher();
 	const click = () => dispatch('click');
@@ -13,7 +15,7 @@
 </script>
 
 <button
-	class="app-btn mx-auto flex-grow-0"
+	class="app-btn {classNames}"
 	class:app-btn--disabled={disabled}
 	{disabled}
 	on:click={() => handleSelection()}>{text}</button
