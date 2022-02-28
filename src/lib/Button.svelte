@@ -3,7 +3,6 @@
 	import { dark } from '$lib/stores';
 
 	export let disabled: boolean = false;
-	export let text: string;
 	let classNames: string = '';
 	export { classNames as class };
 
@@ -21,12 +20,13 @@
 	class:btn--disabled-dark={$dark && disabled}
 	class:btn--disabled={disabled}
 	{disabled}
-	on:click={() => handleSelection()}>{text}</button
->
+	on:click={() => handleSelection()}
+	><slot />
+</button>
 
 <style>
 	.btn {
-		@apply py-1 px-2 rounded-lg bg-pink-100 shadow-md border-2 border-transparent;
+		@apply py-1 px-2 rounded-lg bg-pink-100 shadow-md;
 	}
 
 	.btn--dark {

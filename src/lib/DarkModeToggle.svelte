@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { dark } from './stores';
+	import Button from './Button.svelte';
 
 	function toggleDarkMode() {
 		$dark = !$dark;
@@ -7,12 +8,7 @@
 </script>
 
 <div class="flex">
-	<button
-		id="theme-toggle"
-		type="button"
-		class="text-gray-900 dark:text-gray-50 bg-pink-100 dark:bg-gray-700 shadow-md rounded-lg text-sm p-2.5"
-		on:click={toggleDarkMode}
-	>
+	<Button on:click={toggleDarkMode} class="rounded-lg text-sm">
 		<svg
 			id="theme-toggle-dark-icon"
 			class="w-5 h-5"
@@ -37,5 +33,5 @@
 				clip-rule="evenodd"
 			/>
 		</svg>
-	</button>
+	</Button>
 </div>
