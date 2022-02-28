@@ -10,6 +10,7 @@
 	import type { Scenario } from '$lib/scenario';
 	import DarkToggle from '$lib/DarkToggle.svelte';
 	import EffectivenessButton from '$lib/EffectivenessButton.svelte';
+	import Button from '$lib/Button.svelte';
 
 	function refreshLocalScenario() {
 		scenario = gameState.scenario();
@@ -110,28 +111,16 @@
 		</div>
 		<div class="flex flex-row flex-wrap mb-2 justify-center">
 			{#each EFFECTIVENESSES as eff}
-				<EffectivenessButton isCorrect={eff === correctEffectiveness} effectiveness={eff}
-				disabled={answerSelected}
-				on:click={() => handleSelection(eff)} />
+				<EffectivenessButton
+					isCorrect={eff === correctEffectiveness}
+					effectiveness={eff}
+					disabled={answerSelected}
+					on:click={() => handleSelection(eff)}
+				/>
 			{/each}
 		</div>
 		<div class="flex flex-col flex-grow-0 justify-center sm:flex-grow">
-			<button
-				disabled={!answerSelected}
-				class="flex-grow-0 mx-auto app-btn"
-				class:app-btn--disabled={!answerSelected}
-				on:click={resetState}>Next</button
-			>
+			<Button text="Next" disabled={!answerSelected} on:click={resetState} />
 		</div>
 	</div>
 </div>
-
-<style>
-	.app-btn {
-		@apply py-1 px-2 border-solid border-2 border-pink-200 rounded-lg text-white;
-	}
-
-	.app-btn--disabled {
-		@apply text-gray-500 border-gray-500 border-dashed;
-	}
-</style>
