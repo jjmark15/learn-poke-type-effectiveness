@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { elementString } from './element';
+	import { elementString } from '../element';
 
-	import type { Scenario } from './scenario';
+	import type { Scenario } from '../scenario';
 
 	export let scenario: Scenario;
 </script>

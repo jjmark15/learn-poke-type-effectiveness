@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { dark } from './stores';
+	import { dark } from '../stores';
 	import Button from './Button.svelte';
 
 	function toggleDarkMode() {

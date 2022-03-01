@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { effectivenessString, type Effectiveness } from './effectiveness';
+	import { effectivenessString, type Effectiveness } from '../effectiveness';
 	import { createEventDispatcher } from 'svelte';
 
 	let isSelected: boolean;

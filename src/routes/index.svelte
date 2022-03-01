@@ -7,11 +7,11 @@
 	import { GameState } from '$lib/game-state';
 	import { ExhaustiveScenarioGenerator } from '$lib/scenario-generator';
 	import type { Scenario } from '$lib/scenario';
-	import DarkToggle from '$lib/DarkModeToggle.svelte';
-	import EffectivenessButton from '$lib/EffectivenessButton.svelte';
-	import Button from '$lib/Button.svelte';
-	import StreakCounterView from '$lib/StreakCounterView.svelte';
-	import ScenarioView from '$lib/ScenarioView.svelte';
+	import DarkToggle from '$lib/components/DarkModeToggle.svelte';
+	import EffectivenessButton from '$lib/components/EffectivenessButton.svelte';
+	import Button from '$lib/components/Button.svelte';
+	import StreakCounterView from '$lib/components/StreakCounterView.svelte';
+	import ScenarioView from '$lib/components/ScenarioView.svelte';
 	import { fly } from 'svelte/transition';
 	import { onMount } from 'svelte';
 
