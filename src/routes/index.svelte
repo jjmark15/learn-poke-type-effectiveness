@@ -12,6 +12,8 @@
 	import Button from '$lib/Button.svelte';
 	import StreakCounterView from '$lib/StreakCounterView.svelte';
 	import ScenarioView from '$lib/ScenarioView.svelte';
+	import { fly } from 'svelte/transition';
+	import { onMount } from 'svelte';
 
 	function refreshLocalScenario() {
 		scenario = gameState.scenario();
@@ -66,6 +68,14 @@
 		);
 	}
 
+	function hideScenario(): void {
+		scenarioVisible = false;
+	}
+
+	function showScenario(): void {
+		scenarioVisible = true;
+	}
+
 	let scenario: Scenario;
 	let streakHighScore: number = 0;
 	let streakCounterValue: number = 0;
@@ -78,6 +88,14 @@
 		initialiseGameState();
 		initialiseLocalVariables();
 	}
+
+	let scenarioVisible = true;
+	let showLoading = true;
+
+	onMount(() => {
+		hideScenario();
+		showLoading = false;
+	});
 </script>
 
 <svelte:head>
@@ -90,13 +108,24 @@
 		<DarkToggle />
 	</div>
 	<div class="flex flex-col flex-grow justify-center">
-		<div class="flex flex-col flex-grow justify-center mb-2">
-			{#if browser}
-				<ScenarioView {scenario} />
-			{:else}
-				<p class="text-7xl text-center text-gray-900 dark:text-pink-200">Loading</p>
-			{/if}
-		</div>
+		{#if scenarioVisible}
+			<div
+				class="flex flex-col flex-grow justify-center mb-2"
+				in:fly={{ x: -500, duration: 400 }}
+				out:fly={{ x: 500, duration: 400 }}
+				on:outroend={() => {
+					resetState();
+					showScenario();
+				}}
+			>
+				{#if !showLoading}
+					<ScenarioView {scenario} />
+				{:else}
+					<p class="text-7xl text-center text-gray-900 dark:text-pink-200">Loading</p>
+				{/if}
+			</div>
+		{/if}
+
 		<div class="flex flex-row flex-wrap mb-2 justify-center">
 			{#each EFFECTIVENESSES as eff}
 				<EffectivenessButton
@@ -109,7 +138,7 @@
 			{/each}
 		</div>
 		<div class="flex flex-col flex-grow-0 justify-center sm:flex-grow">
-			<Button class="mx-auto flex-grow-0" disabled={!answerSelected} on:click={resetState}
+			<Button class="mx-auto flex-grow-0" disabled={!answerSelected} on:click={hideScenario}
 				>{'Next'}</Button
 			>
 		</div>
