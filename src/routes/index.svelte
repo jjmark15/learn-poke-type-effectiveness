@@ -13,6 +13,7 @@
 	import StreakCounterView from '$lib/components/StreakCounterView.svelte';
 	import ScenarioView from '$lib/components/ScenarioView.svelte';
 	import { onMount } from 'svelte';
+	import { slide } from 'svelte/transition';
 
 	function refreshLocalScenario() {
 		scenario = gameState.scenario();
@@ -42,6 +43,7 @@
 
 	function resetState() {
 		gameState.proceedToNextScenario();
+		scenarioCount += 1;
 		if (gameState.startingANewStreak()) {
 			refreshLocalHighScore();
 		}
@@ -81,6 +83,7 @@
 	}
 
 	let showLoading = true;
+	let scenarioCount: number = 0;
 
 	onMount(() => {
 		showLoading = false;
@@ -101,7 +104,11 @@
 			{#if showLoading}
 				<p class="text-7xl text-center text-gray-900 dark:text-pink-200">Loading</p>
 			{:else}
-				<ScenarioView {scenario} />
+				{#key scenarioCount}
+					<div out:slide={{ duration: 200 }} in:slide={{ delay: 200, duration: 200 }}>
+						<ScenarioView {scenario} />
+					</div>
+				{/key}
 			{/if}
 		</div>
 
