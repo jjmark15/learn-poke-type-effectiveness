@@ -118,10 +118,10 @@
 					showScenario();
 				}}
 			>
-				{#if !showLoading}
-					<ScenarioView {scenario} />
-				{:else}
+				{#if showLoading}
 					<p class="text-7xl text-center text-gray-900 dark:text-pink-200">Loading</p>
+				{:else}
+					<ScenarioView {scenario} />
 				{/if}
 			</div>
 		{/if}
