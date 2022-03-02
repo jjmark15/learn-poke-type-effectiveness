@@ -1,0 +1,44 @@
+<script lang="ts">
+	import { EffectivenessCalculator } from '$lib/effectiveness-calculator';
+	import type { Scenario } from '$lib/scenario';
+	import DarkToggle from '$lib/components/DarkModeToggle.svelte';
+	import { onMount } from 'svelte';
+	import { IndexedDbFailureHistoryRepository } from '$lib/failure-history-repository';
+	import ScenarioWithAnswerView from '$lib/components/ScenarioWithAnswerView.svelte';
+	import type { Effectiveness } from '$lib/effectiveness';
+
+	async function refreshScenarioFailures() {
+		scenarioFailures = await failureHistoryRepository.get();
+	}
+
+	function effectiveness(scenario: Scenario): Effectiveness {
+		return effectivenessCalculcator.calculate(
+			scenario.damageElement(),
+			scenario.defendingElement()
+		);
+	}
+
+	let scenarioFailures: Scenario[] = [];
+
+	let effectivenessCalculcator: EffectivenessCalculator = new EffectivenessCalculator();
+	let failureHistoryRepository: IndexedDbFailureHistoryRepository =
+		new IndexedDbFailureHistoryRepository();
+
+	onMount(() => {
+		refreshScenarioFailures();
+	});
+</script>
+
+<svelte:head>
+	<title>Learn Pokemon Type Effectiveness</title>
+</svelte:head>
+
+<div class="h-full text-3xl flex flex-grow flex-col">
+	<div class="flex flex-row justify-end">
+		<DarkToggle />
+	</div>
+
+	{#each scenarioFailures as scenario}
+		<ScenarioWithAnswerView {scenario} effectiveness={effectiveness(scenario)} />
+	{/each}
+</div>
