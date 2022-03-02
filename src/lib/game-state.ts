@@ -1,13 +1,19 @@
 import type { Effectiveness } from './effectiveness';
 import type { EffectivenessCalculator } from './effectiveness-calculator';
+import type { FailureHistoryRepository } from './failure-history-repository';
 import type { HighScoreRepository } from './high-score-repository';
 import type { Scenario } from './scenario';
 import type { ScenarioGenerator } from './scenario-generator';
 import type { StreakCounter } from './streak-counter';
 
-export class GameState<HSR extends HighScoreRepository, SG extends ScenarioGenerator> {
+export class GameState<
+	HSR extends HighScoreRepository,
+	SFH extends FailureHistoryRepository,
+	SG extends ScenarioGenerator
+> {
 	private _scenario?: Scenario;
 	private highScoreRepository: HSR;
+	private scenarioFailureHistoryRepository: SFH;
 	private effectivenessCalculator: EffectivenessCalculator;
 	private scenarioGenerator: SG;
 	private streakCounter: StreakCounter;
@@ -15,11 +21,13 @@ export class GameState<HSR extends HighScoreRepository, SG extends ScenarioGener
 
 	constructor(
 		highScoreRepository: HSR,
+		scenarioFailureHistoryRepository: SFH,
 		effectivenessCalculator: EffectivenessCalculator,
 		scenarioGenerator: SG,
 		streakCounter: StreakCounter
 	) {
 		this.highScoreRepository = highScoreRepository;
+		this.scenarioFailureHistoryRepository = scenarioFailureHistoryRepository;
 		this.effectivenessCalculator = effectivenessCalculator;
 		this.scenarioGenerator = scenarioGenerator;
 		this.streakCounter = streakCounter;
@@ -63,9 +71,10 @@ export class GameState<HSR extends HighScoreRepository, SG extends ScenarioGener
 		return this.streakCounter.value();
 	}
 
-	public proceedToNextScenario(): void {
+	public async proceedToNextScenario(): Promise<void> {
 		if (!this.selectedEffectivenessIsCorrect()) {
 			this.streakCounter.reset();
+			await this.recordScenarioFailure(this.scenario());
 		}
 		this.generateNewScenario();
 		this._selectedEffectiveness = undefined;
@@ -86,5 +95,9 @@ export class GameState<HSR extends HighScoreRepository, SG extends ScenarioGener
 		if (newStreakValue > oldStreakValue) {
 			await this.highScoreRepository.update(newStreakValue);
 		}
+	}
+
+	private async recordScenarioFailure(scenario: Scenario): Promise<void> {
+		await this.scenarioFailureHistoryRepository.recordFailure(scenario);
 	}
 }

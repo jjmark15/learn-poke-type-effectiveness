@@ -14,6 +14,7 @@
 	import ScenarioView from '$lib/components/ScenarioView.svelte';
 	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
+	import { IndexedDbFailureHistoryRepository } from '$lib/failure-history-repository';
 
 	function refreshLocalScenario() {
 		scenario = gameState.scenario();
@@ -41,8 +42,8 @@
 		refreshLocalStreakCount();
 	}
 
-	function resetState() {
-		gameState.proceedToNextScenario();
+	async function resetState() {
+		await gameState.proceedToNextScenario();
 		scenarioCount += 1;
 		if (gameState.startingANewStreak()) {
 			refreshLocalHighScore();
@@ -63,6 +64,7 @@
 	function initialiseGameState(): void {
 		gameState = new GameState(
 			new IndexedDbHighScoreRepository(),
+			new IndexedDbFailureHistoryRepository(),
 			new EffectivenessCalculator(),
 			ExhaustiveScenarioGenerator.default(),
 			StreakCounter.default()
@@ -76,7 +78,11 @@
 	let effectivenessSelection: Effectiveness;
 	$: answerSelected = effectivenessSelection !== undefined;
 
-	let gameState: GameState<IndexedDbHighScoreRepository, ExhaustiveScenarioGenerator>;
+	let gameState: GameState<
+		IndexedDbHighScoreRepository,
+		IndexedDbFailureHistoryRepository,
+		ExhaustiveScenarioGenerator
+	>;
 	if (browser) {
 		initialiseGameState();
 		initialiseLocalVariables();

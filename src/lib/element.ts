@@ -80,3 +80,44 @@ export function elementString(element: PokemonElement): string {
 			return 'Water';
 	}
 }
+
+export function parseElementString(elementString: string): PokemonElement {
+	switch (elementString) {
+		case 'Bug':
+			return PokemonElement.Bug;
+		case 'Dark':
+			return PokemonElement.Dark;
+		case 'Dragon':
+			return PokemonElement.Dragon;
+		case 'Electric':
+			return PokemonElement.Electric;
+		case 'Fairy':
+			return PokemonElement.Fairy;
+		case 'Fighting':
+			return PokemonElement.Fighting;
+		case 'Fire':
+			return PokemonElement.Fire;
+		case 'Flying':
+			return PokemonElement.Flying;
+		case 'Ghost':
+			return PokemonElement.Ghost;
+		case 'Grass':
+			return PokemonElement.Grass;
+		case 'Ground':
+			return PokemonElement.Ground;
+		case 'Ice':
+			return PokemonElement.Ice;
+		case 'Normal':
+			return PokemonElement.Normal;
+		case 'Poison':
+			return PokemonElement.Poison;
+		case 'Psychic':
+			return PokemonElement.Psychic;
+		case 'Rock':
+			return PokemonElement.Rock;
+		case 'Steel':
+			return PokemonElement.Steel;
+		case 'Water':
+			return PokemonElement.Water;
+	}
+};
