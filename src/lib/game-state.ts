@@ -43,7 +43,11 @@ export class GameState<
 
 	public selectEffectiveness(effectiveness: Effectiveness): void {
 		this._selectedEffectiveness = effectiveness;
-		this.incrementStreakIfAnswerIsCorrect();
+		if (this.selectedEffectivenessIsCorrect()) {
+			this.streakCounter.increment();
+		} else {
+			this.recordScenarioFailure(this.scenario());
+		}
 		this.updateStreakHighScoreIfBetter(this.streakCounter.value());
 	}
 
@@ -71,10 +75,9 @@ export class GameState<
 		return this.streakCounter.value();
 	}
 
-	public async proceedToNextScenario(): Promise<void> {
+	public proceedToNextScenario(): void {
 		if (!this.selectedEffectivenessIsCorrect()) {
 			this.streakCounter.reset();
-			await this.recordScenarioFailure(this.scenario());
 		}
 		this.generateNewScenario();
 		this._selectedEffectiveness = undefined;
@@ -82,12 +85,6 @@ export class GameState<
 
 	public startingANewStreak(): boolean {
 		return this.streakCounter.value() === 0;
-	}
-
-	private incrementStreakIfAnswerIsCorrect(): void {
-		if (this.selectedEffectivenessIsCorrect()) {
-			this.streakCounter.increment();
-		}
 	}
 
 	private async updateStreakHighScoreIfBetter(newStreakValue: number) {

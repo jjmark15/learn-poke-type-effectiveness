@@ -42,8 +42,8 @@
 		refreshLocalStreakCount();
 	}
 
-	async function resetState() {
-		await gameState.proceedToNextScenario();
+	function resetState() {
+		gameState.proceedToNextScenario();
 		scenarioCount += 1;
 		if (gameState.startingANewStreak()) {
 			refreshLocalHighScore();
