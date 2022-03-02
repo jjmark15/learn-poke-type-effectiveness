@@ -120,4 +120,4 @@ export function parseElementString(elementString: string): PokemonElement {
 		case 'Water':
 			return PokemonElement.Water;
 	}
-};
+}

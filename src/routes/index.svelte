@@ -103,7 +103,6 @@
 <div class="h-full text-3xl flex flex-grow flex-col">
 	<div class="flex flex-row justify-start">
 		<StreakCounterView class="flex-grow" streak={streakCounterValue} bestStreak={streakHighScore} />
-		<DarkToggle />
 	</div>
 	<div class="flex flex-col flex-grow justify-center">
 		<div class="flex flex-col flex-grow justify-center mb-2">

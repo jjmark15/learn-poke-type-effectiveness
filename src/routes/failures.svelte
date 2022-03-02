@@ -34,10 +34,6 @@
 </svelte:head>
 
 <div class="h-full text-3xl flex flex-grow flex-col">
-	<div class="flex flex-row justify-end">
-		<DarkToggle />
-	</div>
-
 	{#each scenarioFailures as scenario}
 		<ScenarioWithAnswerView {scenario} effectiveness={effectiveness(scenario)} />
 	{/each}

@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { dark } from '../stores';
 	import Button from './Button.svelte';
+	let classNames: string = '';
+	export { classNames as class };
 
 	function toggleDarkMode() {
 		$dark = !$dark;
@@ -8,7 +10,7 @@
 </script>
 
 <div class="flex">
-	<Button on:click={toggleDarkMode} class="rounded-lg text-sm">
+	<Button on:click={toggleDarkMode} class="rounded-lg text-sm {classNames}">
 		<svg
 			id="theme-toggle-dark-icon"
 			class="w-5 h-5"
