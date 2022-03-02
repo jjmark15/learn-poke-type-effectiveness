@@ -110,7 +110,7 @@
 				<p class="text-7xl text-center text-gray-900 dark:text-pink-200">Loading</p>
 			{:else}
 				{#key scenarioCount}
-					<div out:slide={{ duration: 200 }} in:slide={{ delay: 200, duration: 200 }}>
+					<div out:slide|local={{ duration: 200 }} in:slide={{ delay: 200, duration: 200 }}>
 						<ScenarioView {scenario} />
 					</div>
 				{/key}
