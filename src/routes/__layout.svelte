@@ -21,8 +21,8 @@
 	>
 		<div class="flex flex-row justify-start mb-2">
 			<nav class="flex-grow">
-				<a href="/">home</a>
-				<a href="/failures">failures</a>
+				<a sveltekit:prefetch href="/">home</a>
+				<a sveltekit:prefetch href="/failures">failures</a>
 			</nav>
 			<DarkModeToggle class="ml-2" />
 		</div>
