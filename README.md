@@ -6,7 +6,7 @@ PokeLearn is my fun little side project where I combine a desire to not be compl
 
 The app is currently a simple game where you can test your knowledge of Pokemon type effectiveness.
 
-It is hosted [here](https://pokelearn.netlify.app/).
+It is hosted [here](https://pokelearn.vercel.app/).
 
 ## Development
 
