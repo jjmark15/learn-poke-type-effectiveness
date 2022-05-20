@@ -7,4 +7,4 @@
 
 [build.environment]
   NPM_FLAGS="--prefix=/dev/null"
-  NODE_VERSION="14.17"
+  NODE_VERSION="16.15"
