@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+	@apply text-gray-700 dark:text-white text-3xl;
+}
+
 nav {
 	a {
 		@apply text-2xl dark:text-gray-50 bg-pink-50 dark:bg-gray-700 py-1 px-2 mr-1 rounded-lg shadow-md;

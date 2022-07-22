@@ -26,15 +26,14 @@
 </script>
 
 <svelte:head>
-	<title>Learn Pokemon Type Effectiveness</title>
+	<title>Override PokeLearn Highscore</title>
 </svelte:head>
 
 <Page>
-	<div>
+	<div class="flex flex-wrap">
 		<label label="number input">
-			<input type="number" bind:value={streakHighScore} min="0" />
+			<input type="number" bind:value={streakHighScore} min="0" class="text-black" />
 		</label>
 		<Button on:click={submitNewHighScore}>Submit</Button>
 	</div>
-	<pre>{streakHighScore}</pre>
 </Page>

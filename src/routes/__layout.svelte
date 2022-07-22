@@ -18,6 +18,6 @@
 	<meta name="theme-color" content={$dark ? '#111827' : '#fbcfe8'} />
 </svelte:head>
 
-<div class="flex flex-grow flex-col text-gray-700 dark:text-white text-3xl">
+<div class="flex flex-grow flex-col">
 	<slot />
 </div>
