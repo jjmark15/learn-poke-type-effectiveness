@@ -14,6 +14,7 @@
 	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
 	import { IndexedDbFailureHistoryRepository } from '$lib/failure-history-repository';
+	import FullScreenPage from '$lib/components/FullScreenPage.svelte';
 
 	function refreshLocalScenario() {
 		scenario = gameState.scenario();
@@ -99,38 +100,44 @@
 	<title>Learn Pokemon Type Effectiveness</title>
 </svelte:head>
 
-<div class="h-full text-3xl flex flex-grow flex-col">
-	<div class="flex flex-row justify-start">
-		<StreakCounterView class="flex-grow" streak={streakCounterValue} bestStreak={streakHighScore} />
-	</div>
-	<div class="flex flex-col flex-grow justify-center">
-		<div class="flex flex-col flex-grow justify-center mb-2">
-			{#if showLoading}
-				<p class="text-7xl text-center text-gray-900 dark:text-pink-200">Loading</p>
-			{:else}
-				{#key scenarioCount}
-					<div out:slide|local={{ duration: 200 }} in:slide={{ delay: 200, duration: 200 }}>
-						<ScenarioView {scenario} />
-					</div>
-				{/key}
-			{/if}
+<FullScreenPage>
+	<div class="text-3xl flex flex-grow flex-col">
+		<div class="flex flex-row justify-start">
+			<StreakCounterView
+				class="flex-grow"
+				streak={streakCounterValue}
+				bestStreak={streakHighScore}
+			/>
 		</div>
+		<div class="flex flex-col flex-grow justify-center">
+			<div class="flex flex-col flex-grow justify-center mb-2">
+				{#if showLoading}
+					<p class="text-7xl text-center text-gray-900 dark:text-pink-200">Loading</p>
+				{:else}
+					{#key scenarioCount}
+						<div out:slide|local={{ duration: 200 }} in:slide={{ delay: 200, duration: 200 }}>
+							<ScenarioView {scenario} />
+						</div>
+					{/key}
+				{/if}
+			</div>
 
-		<div class="flex flex-row flex-wrap mb-2 justify-center">
-			{#each EFFECTIVENESSES as eff}
-				<EffectivenessButton
-					class="m-1 flex-grow-0"
-					isCorrect={eff === correctEffectiveness}
-					effectiveness={eff}
-					disabled={answerSelected}
-					on:click={() => handleSelection(eff)}
-				/>
-			{/each}
-		</div>
-		<div class="flex flex-col flex-grow-0 justify-center sm:flex-grow">
-			<Button class="mx-auto flex-grow-0" disabled={!answerSelected} on:click={resetState}
-				>{'Next'}</Button
-			>
+			<div class="flex flex-row flex-wrap mb-2 justify-center">
+				{#each EFFECTIVENESSES as eff}
+					<EffectivenessButton
+						class="m-1 flex-grow-0"
+						isCorrect={eff === correctEffectiveness}
+						effectiveness={eff}
+						disabled={answerSelected}
+						on:click={() => handleSelection(eff)}
+					/>
+				{/each}
+			</div>
+			<div class="flex flex-col flex-grow-0 justify-center sm:flex-grow">
+				<Button class="mx-auto flex-grow-0" disabled={!answerSelected} on:click={resetState}
+					>{'Next'}</Button
+				>
+			</div>
 		</div>
 	</div>
-</div>
+</FullScreenPage>

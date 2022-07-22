@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { EffectivenessCalculator } from '$lib/effectiveness-calculator';
 	import type { Scenario } from '$lib/scenario';
-	import DarkToggle from '$lib/components/DarkModeToggle.svelte';
 	import { onMount } from 'svelte';
 	import { IndexedDbFailureHistoryRepository } from '$lib/failure-history-repository';
 	import ScenarioWithAnswerView from '$lib/components/ScenarioWithAnswerView.svelte';
 	import type { Effectiveness } from '$lib/effectiveness';
+	import Page from '$lib/components/Page.svelte';
 
 	async function refreshScenarioFailures() {
 		scenarioFailures = await failureHistoryRepository.get();
@@ -33,8 +33,10 @@
 	<title>Learn Pokemon Type Effectiveness</title>
 </svelte:head>
 
-<div class="h-full text-3xl flex flex-grow flex-col">
-	{#each scenarioFailures as scenario}
-		<ScenarioWithAnswerView {scenario} effectiveness={effectiveness(scenario)} />
-	{/each}
-</div>
+<Page>
+	<div class="text-3xl flex flex-grow flex-col">
+		{#each scenarioFailures as scenario}
+			<ScenarioWithAnswerView {scenario} effectiveness={effectiveness(scenario)} />
+		{/each}
+	</div>
+</Page>

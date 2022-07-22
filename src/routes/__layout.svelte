@@ -2,7 +2,10 @@
 	import '../app.css';
 	import { browser } from '$app/env';
 	import { dark } from '../lib/stores';
-	import DarkModeToggle from '$lib/components/DarkModeToggle.svelte';
+
+	$: if (browser) {
+		document.getElementsByTagName('html')[0].classList.toggle('dark', $dark);
+	}
 </script>
 
 <svelte:head>
@@ -15,17 +18,6 @@
 	<meta name="theme-color" content={$dark ? '#111827' : '#fbcfe8'} />
 </svelte:head>
 
-<div class:dark={$dark === true} class="flex flex-grow">
-	<div
-		class="bg-pink-200 dark:bg-gray-900 text-gray-700 dark:text-white p-4 flex-grow flex flex-col"
-	>
-		<div class="flex flex-row justify-start mb-2">
-			<nav class="flex-grow">
-				<a sveltekit:prefetch href="/">home</a>
-				<a sveltekit:prefetch href="/failures">failures</a>
-			</nav>
-			<DarkModeToggle class="ml-2" />
-		</div>
-		<slot />
-	</div>
+<div class="flex flex-grow flex-col text-gray-700 dark:text-white">
+	<slot />
 </div>
