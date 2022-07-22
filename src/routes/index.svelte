@@ -101,14 +101,8 @@
 </svelte:head>
 
 <FullScreenPage>
-	<div class="text-3xl flex flex-grow flex-col">
-		<div class="flex flex-row justify-start">
-			<StreakCounterView
-				class="flex-grow"
-				streak={streakCounterValue}
-				bestStreak={streakHighScore}
-			/>
-		</div>
+	<div class="flex flex-grow flex-col">
+		<StreakCounterView class="flex-grow" streak={streakCounterValue} bestStreak={streakHighScore} />
 		<div class="flex flex-col flex-grow justify-center">
 			<div class="flex flex-col flex-grow justify-center mb-2">
 				{#if showLoading}

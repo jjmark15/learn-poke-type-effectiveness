@@ -34,7 +34,7 @@
 </svelte:head>
 
 <Page>
-	<div class="text-3xl flex flex-grow flex-col">
+	<div class="flex flex-grow flex-col">
 		{#each scenarioFailures as scenario}
 			<ScenarioWithAnswerView {scenario} effectiveness={effectiveness(scenario)} />
 		{/each}
