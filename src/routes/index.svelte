@@ -116,21 +116,23 @@
 				{/if}
 			</div>
 
-			<div class="flex flex-row flex-wrap mb-2 justify-center">
-				{#each EFFECTIVENESSES as eff}
-					<EffectivenessButton
-						class="m-1 flex-grow-0"
-						isCorrect={eff === correctEffectiveness}
-						effectiveness={eff}
-						disabled={answerSelected}
-						on:click={() => handleSelection(eff)}
-					/>
-				{/each}
-			</div>
-			<div class="flex flex-col flex-grow-0 justify-center sm:flex-grow">
-				<Button class="mx-auto flex-grow-0" disabled={!answerSelected} on:click={resetState}
-					>{'Next'}</Button
-				>
+			<div class="flex flex-col flex-grow justify-center sm:max-h-80">
+				<div class="flex flex-row flex-wrap mb-2 justify-center">
+					{#each EFFECTIVENESSES as eff}
+						<EffectivenessButton
+							class="m-1 flex-grow-0"
+							isCorrect={eff === correctEffectiveness}
+							effectiveness={eff}
+							disabled={answerSelected}
+							on:click={() => handleSelection(eff)}
+						/>
+					{/each}
+				</div>
+				<div class="flex flex-col flex-grow-0 justify-center sm:flex-grow">
+					<Button class="mx-auto flex-grow-0" disabled={!answerSelected} on:click={resetState}
+						>{'Next'}</Button
+					>
+				</div>
 			</div>
 		</div>
 	</div>
