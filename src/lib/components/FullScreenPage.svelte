@@ -1,8 +1,7 @@
 <script lang="ts">
-	import NavBar from './NavBar.svelte';
+	import Page from './Page.svelte';
 </script>
 
-<div class="h-screen flex flex-grow flex-col p-4">
-	<NavBar />
-    <slot />
-</div>
+<Page fullScreen={true}>
+	<slot />
+</Page>
