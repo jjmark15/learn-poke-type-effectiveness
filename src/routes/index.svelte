@@ -102,7 +102,7 @@
 
 <FullScreenPage>
 	<div class="flex flex-grow flex-col">
-		<StreakCounterView class="flex-grow" streak={streakCounterValue} bestStreak={streakHighScore} />
+		<StreakCounterView streak={streakCounterValue} bestStreak={streakHighScore} />
 		<div class="flex flex-col flex-grow justify-center">
 			<div class="flex flex-col flex-grow justify-center mb-2">
 				{#if showLoading}
