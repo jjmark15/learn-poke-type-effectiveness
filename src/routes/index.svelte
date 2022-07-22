@@ -116,7 +116,7 @@
 				{/if}
 			</div>
 
-			<div class="flex flex-col flex-grow justify-center sm:max-h-80">
+			<div class="flex flex-col flex-grow-0 sm:flex-grow justify-center sm:max-h-80">
 				<div class="flex flex-row flex-wrap mb-2 justify-center">
 					{#each EFFECTIVENESSES as eff}
 						<EffectivenessButton
