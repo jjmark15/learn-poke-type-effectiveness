@@ -1,8 +1,10 @@
 <script lang="ts">
-	import { IndexedDbHighScoreRepository } from '$lib/high-score-repository';
 	import { browser } from '$app/env';
 	import Page from '$lib/components/Page.svelte';
 	import Button from '$lib/components/Button.svelte';
+	import { SupabaseHighScoreRepository } from '$lib/supbaseHighScoreRepository';
+	import { LocalAndRemoteHighScoreRepository } from '$lib/localAndRemoteHighScoreRepository';
+	import { IndexedDbHighScoreRepository } from '$lib/indexedDbHighScoreRepository';
 
 	async function refreshLocalHighScore() {
 		streakHighScore = await highScoreRepository.get();
@@ -17,10 +19,13 @@
 	}
 
 	let streakHighScore: number = 0;
-	let highScoreRepository: IndexedDbHighScoreRepository;
+	let highScoreRepository: LocalAndRemoteHighScoreRepository;
 
 	if (browser) {
-		highScoreRepository = new IndexedDbHighScoreRepository();
+		highScoreRepository = new LocalAndRemoteHighScoreRepository(
+			new IndexedDbHighScoreRepository(),
+			new SupabaseHighScoreRepository()
+		);
 		refreshLocalHighScore();
 	}
 </script>

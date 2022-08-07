@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { Effectiveness, EFFECTIVENESSES } from '$lib/effectiveness';
 	import { EffectivenessCalculator } from '$lib/effectiveness-calculator';
-	import { IndexedDbHighScoreRepository } from '$lib/high-score-repository';
 	import { StreakCounter } from '$lib/streak-counter';
 	import { browser } from '$app/env';
 	import { GameState } from '$lib/game-state';
@@ -15,6 +14,9 @@
 	import { slide } from 'svelte/transition';
 	import { IndexedDbFailureHistoryRepository } from '$lib/failure-history-repository';
 	import FullScreenPage from '$lib/components/FullScreenPage.svelte';
+	import { SupabaseHighScoreRepository } from '$lib/supbaseHighScoreRepository';
+	import { LocalAndRemoteHighScoreRepository } from '$lib/localAndRemoteHighScoreRepository';
+	import { IndexedDbHighScoreRepository } from '$lib/indexedDbHighScoreRepository';
 
 	function refreshLocalScenario() {
 		scenario = gameState.scenario();
@@ -63,7 +65,10 @@
 
 	function initialiseGameState(): void {
 		gameState = new GameState(
-			new IndexedDbHighScoreRepository(),
+			new LocalAndRemoteHighScoreRepository(
+				new IndexedDbHighScoreRepository(),
+				new SupabaseHighScoreRepository()
+			),
 			new IndexedDbFailureHistoryRepository(),
 			new EffectivenessCalculator(),
 			ExhaustiveScenarioGenerator.default(),
@@ -79,7 +84,7 @@
 	$: answerSelected = effectivenessSelection !== undefined;
 
 	let gameState: GameState<
-		IndexedDbHighScoreRepository,
+		LocalAndRemoteHighScoreRepository,
 		IndexedDbFailureHistoryRepository,
 		ExhaustiveScenarioGenerator
 	>;

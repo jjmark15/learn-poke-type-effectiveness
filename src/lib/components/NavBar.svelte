@@ -7,6 +7,7 @@
     <nav class="flex-grow">
         <a sveltekit:prefetch href="/">home</a>
         <a sveltekit:prefetch href="/failures">failures</a>
+        <a sveltekit:prefetch href="/login">login</a>
     </nav>
     <DarkModeToggle class="ml-2" />
 </div>
