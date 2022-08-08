@@ -7,7 +7,7 @@
 	<nav class="flex-grow">
 		<a sveltekit:prefetch href="/">home</a>
 		<a sveltekit:prefetch href="/failures">failures</a>
-		{#if $user.active()}
+		{#if !$user.active()}
 			<a sveltekit:prefetch href="/login">login</a>
 		{/if}
 	</nav>
