@@ -14,10 +14,8 @@
 	import { slide } from 'svelte/transition';
 	import { IndexedDbFailureHistoryRepository } from '$lib/failure-history-repository';
 	import FullScreenPage from '$lib/components/FullScreenPage.svelte';
-	import { SupabaseHighScoreRepository } from '$lib/supabaseHighScoreRepository';
-	import { LocalAndRemoteHighScoreRepository } from '$lib/localAndRemoteHighScoreRepository';
-	import { IndexedDbHighScoreRepository } from '$lib/indexedDbHighScoreRepository';
-	import { CachedHighScoreRepository } from '$lib/cachedHighScoreRepository';
+	import { HighScoreRepositoryFactory } from '$lib/highScoreRepositoryFactory';
+	import type { HighScoreRepository } from '$lib/high-score-repository';
 
 	function refreshLocalScenario() {
 		scenario = gameState.scenario();
@@ -66,10 +64,7 @@
 
 	function initialiseGameState(): void {
 		gameState = new GameState(
-			new LocalAndRemoteHighScoreRepository(
-				new IndexedDbHighScoreRepository(),
-				new CachedHighScoreRepository(new SupabaseHighScoreRepository(), 60000)
-			),
+			HighScoreRepositoryFactory.create(),
 			new IndexedDbFailureHistoryRepository(),
 			new EffectivenessCalculator(),
 			ExhaustiveScenarioGenerator.default(),
@@ -85,7 +80,7 @@
 	$: answerSelected = effectivenessSelection !== undefined;
 
 	let gameState: GameState<
-		LocalAndRemoteHighScoreRepository,
+		HighScoreRepository,
 		IndexedDbFailureHistoryRepository,
 		ExhaustiveScenarioGenerator
 	>;

@@ -2,9 +2,8 @@
 	import { browser } from '$app/env';
 	import Page from '$lib/components/Page.svelte';
 	import Button from '$lib/components/Button.svelte';
-	import { SupabaseHighScoreRepository } from '$lib/supabaseHighScoreRepository';
-	import { LocalAndRemoteHighScoreRepository } from '$lib/localAndRemoteHighScoreRepository';
-	import { IndexedDbHighScoreRepository } from '$lib/indexedDbHighScoreRepository';
+	import { HighScoreRepositoryFactory } from '$lib/highScoreRepositoryFactory';
+	import type { HighScoreRepository } from '$lib/high-score-repository';
 
 	async function refreshLocalHighScore() {
 		streakHighScore = await highScoreRepository.get();
@@ -19,13 +18,10 @@
 	}
 
 	let streakHighScore: number = 0;
-	let highScoreRepository: LocalAndRemoteHighScoreRepository;
+	let highScoreRepository: HighScoreRepository;
 
 	if (browser) {
-		highScoreRepository = new LocalAndRemoteHighScoreRepository(
-			new IndexedDbHighScoreRepository(),
-			new SupabaseHighScoreRepository()
-		);
+		highScoreRepository = HighScoreRepositoryFactory.withoutCaching();
 		refreshLocalHighScore();
 	}
 </script>
