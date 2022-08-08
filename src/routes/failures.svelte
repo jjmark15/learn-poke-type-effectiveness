@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { EffectivenessCalculator } from '$lib/effectiveness-calculator';
+	import { EffectivenessCalculator } from '$lib/effectivenessCalculator';
 	import type { Scenario } from '$lib/scenario';
 	import { onMount } from 'svelte';
-	import { IndexedDbFailureHistoryRepository } from '$lib/failure-history-repository';
+	import { IndexedDbFailureHistoryRepository } from '$lib/failureHistoryRepository';
 	import ScenarioWithAnswerView from '$lib/components/ScenarioWithAnswerView.svelte';
 	import type { Effectiveness } from '$lib/effectiveness';
 	import Page from '$lib/components/Page.svelte';

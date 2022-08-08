@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { Effectiveness, EFFECTIVENESSES } from '$lib/effectiveness';
-	import { EffectivenessCalculator } from '$lib/effectiveness-calculator';
+	import { EffectivenessCalculator } from '$lib/effectivenessCalculator';
 	import { StreakCounter } from '$lib/streak-counter';
 	import { browser } from '$app/env';
-	import { GameState } from '$lib/game-state';
+	import { GameState } from '$lib/gameState';
 	import { ExhaustiveScenarioGenerator } from '$lib/scenario-generator';
 	import type { Scenario } from '$lib/scenario';
 	import EffectivenessButton from '$lib/components/EffectivenessButton.svelte';
@@ -12,10 +12,10 @@
 	import ScenarioView from '$lib/components/ScenarioView.svelte';
 	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
-	import { IndexedDbFailureHistoryRepository } from '$lib/failure-history-repository';
+	import { IndexedDbFailureHistoryRepository } from '$lib/failureHistoryRepository';
 	import FullScreenPage from '$lib/components/FullScreenPage.svelte';
 	import { HighScoreRepositoryFactory } from '$lib/highScoreRepositoryFactory';
-	import type { HighScoreRepository } from '$lib/high-score-repository';
+	import type { HighScoreRepository } from '$lib/highScoreRepository';
 
 	function refreshLocalScenario() {
 		scenario = gameState.scenario();

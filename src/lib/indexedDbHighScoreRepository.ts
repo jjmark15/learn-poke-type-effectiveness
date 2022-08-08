@@ -1,6 +1,6 @@
 import { openDB } from 'idb';
 import type { IDBPDatabase } from 'idb';
-import type { HighScoreRepository } from './high-score-repository';
+import type { HighScoreRepository } from './highScoreRepository';
 
 const DATABASE_NAME = 'type_effec_learning';
 const OBJECT_STORE_NAME = 'streak_high_score';

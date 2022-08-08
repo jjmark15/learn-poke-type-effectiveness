@@ -1,5 +1,5 @@
 import { get } from 'svelte/store';
-import type { HighScoreRepository } from './high-score-repository';
+import type { HighScoreRepository } from './highScoreRepository';
 import { user } from './sessionStore';
 import { supabaseClient } from './supabaseClient';
 

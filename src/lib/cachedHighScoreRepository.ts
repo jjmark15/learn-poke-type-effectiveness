@@ -1,4 +1,4 @@
-import type { HighScoreRepository } from './high-score-repository';
+import type { HighScoreRepository } from './highScoreRepository';
 import { TimeoutPromise } from './timeoutPromise';
 
 export class CachedHighScoreRepository<T extends HighScoreRepository>

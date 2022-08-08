@@ -1,7 +1,7 @@
 import type { Effectiveness } from './effectiveness';
-import type { EffectivenessCalculator } from './effectiveness-calculator';
-import type { FailureHistoryRepository } from './failure-history-repository';
-import type { HighScoreRepository } from './high-score-repository';
+import type { EffectivenessCalculator } from './effectivenessCalculator';
+import type { FailureHistoryRepository } from './failureHistoryRepository';
+import type { HighScoreRepository } from './highScoreRepository';
 import type { Scenario } from './scenario';
 import type { ScenarioGenerator } from './scenario-generator';
 import type { StreakCounter } from './streak-counter';

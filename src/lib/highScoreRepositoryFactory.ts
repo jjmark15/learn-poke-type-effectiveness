@@ -1,5 +1,5 @@
 import { CachedHighScoreRepository } from './cachedHighScoreRepository';
-import type { HighScoreRepository } from './high-score-repository';
+import type { HighScoreRepository } from './highScoreRepository';
 import { IndexedDbHighScoreRepository } from './indexedDbHighScoreRepository';
 import { LocalAndRemoteHighScoreRepository } from './localAndRemoteHighScoreRepository';
 import { SupabaseHighScoreRepository } from './supabaseHighScoreRepository';

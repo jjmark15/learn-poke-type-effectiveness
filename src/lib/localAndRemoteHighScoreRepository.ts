@@ -1,4 +1,4 @@
-import type { HighScoreRepository } from './high-score-repository';
+import type { HighScoreRepository } from './highScoreRepository';
 
 export class LocalAndRemoteHighScoreRepository implements HighScoreRepository {
 	private local: HighScoreRepository;

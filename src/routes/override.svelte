@@ -3,7 +3,7 @@
 	import Page from '$lib/components/Page.svelte';
 	import Button from '$lib/components/Button.svelte';
 	import { HighScoreRepositoryFactory } from '$lib/highScoreRepositoryFactory';
-	import type { HighScoreRepository } from '$lib/high-score-repository';
+	import type { HighScoreRepository } from '$lib/highScoreRepository';
 
 	async function refreshLocalHighScore() {
 		streakHighScore = await highScoreRepository.get();
