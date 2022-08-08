@@ -26,7 +26,11 @@ export class LocalAndRemoteHighScoreRepository implements HighScoreRepository {
 		return Math.max(localHighScore, remoteHighScore);
 	}
 
-	public async update(count: number): Promise<void> {
-		await Promise.all([this.local.update(count), this.remote.update(count)]);
+	public async update(count: number): Promise<number> {
+		const [newLocalValue, newRemoteValue] = await Promise.all([
+			this.local.update(count),
+			this.remote.update(count)
+		]);
+		return Math.max(newLocalValue, newRemoteValue);
 	}
 }

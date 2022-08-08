@@ -20,15 +20,19 @@ export class SupabaseHighScoreRepository implements HighScoreRepository {
 		return data.high_score;
 	}
 
-	public async update(count: number): Promise<void> {
+	public async update(count: number): Promise<number> {
+		console.log('pushing update');
 		const user = supabaseClient.auth.user();
-		const { error } = await supabaseClient
+		const { data, error } = await supabaseClient
 			.from('high_scores')
 			.upsert({ id: user?.id, high_score: count })
 			.eq('id', user?.id)
 			.single();
 		if (error != null) {
 			console.warn(error.message);
+			return 0;
 		}
+
+		return data.high_score;
 	}
 }

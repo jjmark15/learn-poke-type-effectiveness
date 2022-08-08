@@ -2,7 +2,7 @@
 	import { browser } from '$app/env';
 	import Page from '$lib/components/Page.svelte';
 	import Button from '$lib/components/Button.svelte';
-	import { SupabaseHighScoreRepository } from '$lib/supbaseHighScoreRepository';
+	import { SupabaseHighScoreRepository } from '$lib/supabaseHighScoreRepository';
 	import { LocalAndRemoteHighScoreRepository } from '$lib/localAndRemoteHighScoreRepository';
 	import { IndexedDbHighScoreRepository } from '$lib/indexedDbHighScoreRepository';
 

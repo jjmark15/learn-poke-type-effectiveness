@@ -33,9 +33,10 @@ export class IndexedDbHighScoreRepository implements HighScoreRepository {
 		}
 	}
 
-	public async update(count: number): Promise<void> {
+	public async update(count: number): Promise<number> {
 		const db = await this.lazyDbPromise();
 		await db.put(OBJECT_STORE_NAME, count, HIGH_SCORE_VALUE_KEY);
+		return count;
 	}
 }
 
