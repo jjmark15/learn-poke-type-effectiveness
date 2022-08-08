@@ -78,7 +78,7 @@
 	}
 
 	let scenario: Scenario;
-	let streakHighScore: number = 0;
+	let streakHighScore: number;
 	let streakCounterValue: number = 0;
 	let correctEffectiveness: Effectiveness;
 	let effectivenessSelection: Effectiveness;
