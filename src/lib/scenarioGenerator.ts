@@ -1,7 +1,7 @@
 import { ELEMENTS, PokemonElement } from './element';
 import { selectRandomMember } from './random';
 import { Scenario } from './scenario';
-import { ScenarioHistory } from './scenario-history';
+import { ScenarioHistory } from './scenarioHistory';
 
 export interface ScenarioGenerator {
 	generate(): Scenario;

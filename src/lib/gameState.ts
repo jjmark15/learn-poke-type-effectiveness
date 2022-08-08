@@ -3,8 +3,8 @@ import type { EffectivenessCalculator } from './effectivenessCalculator';
 import type { FailureHistoryRepository } from './failureHistoryRepository';
 import type { HighScoreRepository } from './highScoreRepository';
 import type { Scenario } from './scenario';
-import type { ScenarioGenerator } from './scenario-generator';
-import type { StreakCounter } from './streak-counter';
+import type { ScenarioGenerator } from './scenarioGenerator';
+import type { StreakCounter } from './streakCounter';
 
 export class GameState<
 	HSR extends HighScoreRepository,

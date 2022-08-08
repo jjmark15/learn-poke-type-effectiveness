@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { Effectiveness, EFFECTIVENESSES } from '$lib/effectiveness';
 	import { EffectivenessCalculator } from '$lib/effectivenessCalculator';
-	import { StreakCounter } from '$lib/streak-counter';
+	import { StreakCounter } from '$lib/streakCounter';
 	import { browser } from '$app/env';
 	import { GameState } from '$lib/gameState';
-	import { ExhaustiveScenarioGenerator } from '$lib/scenario-generator';
+	import { ExhaustiveScenarioGenerator } from '$lib/scenarioGenerator';
 	import type { Scenario } from '$lib/scenario';
 	import EffectivenessButton from '$lib/components/EffectivenessButton.svelte';
 	import Button from '$lib/components/Button.svelte';
