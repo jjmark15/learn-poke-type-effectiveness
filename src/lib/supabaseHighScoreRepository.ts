@@ -1,8 +1,14 @@
+import { get } from 'svelte/store';
 import type { HighScoreRepository } from './high-score-repository';
+import { user } from './sessionStore';
 import { supabaseClient } from './supabaseClient';
 
 export class SupabaseHighScoreRepository implements HighScoreRepository {
 	public async get(): Promise<number> {
+		if (!this.sessionActive()) {
+			return 0;
+		}
+
 		const user_id = supabaseClient.auth.user()?.id;
 		const { data, error } = await supabaseClient
 			.from('high_scores')
@@ -21,6 +27,10 @@ export class SupabaseHighScoreRepository implements HighScoreRepository {
 	}
 
 	public async update(count: number): Promise<number> {
+		if (!this.sessionActive()) {
+			return 0;
+		}
+
 		console.log('pushing update');
 		const user = supabaseClient.auth.user();
 		const { data, error } = await supabaseClient
@@ -34,5 +44,9 @@ export class SupabaseHighScoreRepository implements HighScoreRepository {
 		}
 
 		return data.high_score;
+	}
+
+	private sessionActive(): boolean {
+		return get(user).active();
 	}
 }
