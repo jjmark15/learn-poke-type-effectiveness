@@ -2,8 +2,8 @@ export class TimeoutPromise {
 	private _promise: Promise<void>;
 	private _resolved = false;
 
-	constructor(durationMs: number) {
-		this._promise = TimeoutPromise.timeoutPromise(durationMs);
+	private constructor(promise: Promise<void>) {
+		this._promise = promise;
 
 		this._promise.finally(() => {
 			this._resolved = true;
@@ -15,10 +15,16 @@ export class TimeoutPromise {
 	}
 
 	public static completed(): TimeoutPromise {
-		const p = new TimeoutPromise(0);
+		const p = new TimeoutPromise(Promise.resolve());
 		p._resolved = true;
 
 		return p;
+	}
+
+	public static fromMillis(durationMs: number): TimeoutPromise {
+		const promise = TimeoutPromise.timeoutPromise(durationMs);
+
+		return new TimeoutPromise(promise);
 	}
 
 	private static timeoutPromise(durationMs: number): Promise<void> {

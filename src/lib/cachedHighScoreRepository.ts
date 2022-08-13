@@ -32,6 +32,6 @@ export class CachedHighScoreRepository<T extends HighScoreRepository>
 	}
 
 	private resetCacheTimeout() {
-		this._cacheTimeout = new TimeoutPromise(this._cacheTimeoutDurationMs);
+		this._cacheTimeout = TimeoutPromise.fromMillis(this._cacheTimeoutDurationMs);
 	}
 }
