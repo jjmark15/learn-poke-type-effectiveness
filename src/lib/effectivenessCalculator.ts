@@ -2,48 +2,51 @@ import { Effectiveness } from './effectiveness';
 import { PokemonElement } from './element';
 
 export class EffectivenessCalculator {
-	public calculate(damageElement: PokemonElement, defendingElement: PokemonElement): Effectiveness {
-		switch (damageElement) {
+	public calculate(
+		offensiveElement: PokemonElement,
+		defensiveElement: PokemonElement
+	): Effectiveness {
+		switch (offensiveElement) {
 			case PokemonElement.Bug:
-				return this.bugDamageEffectiveness(defendingElement);
+				return this.bugDamageEffectiveness(defensiveElement);
 			case PokemonElement.Dark:
-				return this.darkDamageEffectiveness(defendingElement);
+				return this.darkDamageEffectiveness(defensiveElement);
 			case PokemonElement.Dragon:
-				return this.dragonDamageEffectiveness(defendingElement);
+				return this.dragonDamageEffectiveness(defensiveElement);
 			case PokemonElement.Electric:
-				return this.electricDamageEffectiveness(defendingElement);
+				return this.electricDamageEffectiveness(defensiveElement);
 			case PokemonElement.Fairy:
-				return this.fairyDamageEffectiveness(defendingElement);
+				return this.fairyDamageEffectiveness(defensiveElement);
 			case PokemonElement.Fighting:
-				return this.fightingDamageEffectiveness(defendingElement);
+				return this.fightingDamageEffectiveness(defensiveElement);
 			case PokemonElement.Fire:
-				return this.fireDamageEffectiveness(defendingElement);
+				return this.fireDamageEffectiveness(defensiveElement);
 			case PokemonElement.Flying:
-				return this.flyingDamageEffectiveness(defendingElement);
+				return this.flyingDamageEffectiveness(defensiveElement);
 			case PokemonElement.Ghost:
-				return this.ghostDamageEffectiveness(defendingElement);
+				return this.ghostDamageEffectiveness(defensiveElement);
 			case PokemonElement.Grass:
-				return this.grassDamageEffectiveness(defendingElement);
+				return this.grassDamageEffectiveness(defensiveElement);
 			case PokemonElement.Ground:
-				return this.groundDamageEffectiveness(defendingElement);
+				return this.groundDamageEffectiveness(defensiveElement);
 			case PokemonElement.Ice:
-				return this.iceDamageEffectiveness(defendingElement);
+				return this.iceDamageEffectiveness(defensiveElement);
 			case PokemonElement.Normal:
-				return this.normalDamageEffectiveness(defendingElement);
+				return this.normalDamageEffectiveness(defensiveElement);
 			case PokemonElement.Poison:
-				return this.poisonDamageEffectiveness(defendingElement);
+				return this.poisonDamageEffectiveness(defensiveElement);
 			case PokemonElement.Psychic:
-				return this.psychicDamageEffectiveness(defendingElement);
+				return this.psychicDamageEffectiveness(defensiveElement);
 			case PokemonElement.Rock:
-				return this.rockDamageEffectiveness(defendingElement);
+				return this.rockDamageEffectiveness(defensiveElement);
 			case PokemonElement.Steel:
-				return this.steelDamageEffectiveness(defendingElement);
+				return this.steelDamageEffectiveness(defensiveElement);
 			case PokemonElement.Water:
-				return this.waterDamageEffectiveness(defendingElement);
+				return this.waterDamageEffectiveness(defensiveElement);
 		}
 	}
 
-	private bugDamageEffectiveness(defendingElement: PokemonElement): Effectiveness {
+	private bugDamageEffectiveness(defensiveElement: PokemonElement): Effectiveness {
 		return new ElementDamageEffectiveness(
 			[],
 			[
@@ -56,42 +59,42 @@ export class EffectivenessCalculator {
 				PokemonElement.Fairy
 			],
 			[PokemonElement.Grass, PokemonElement.Psychic, PokemonElement.Dark]
-		).effectiveness(defendingElement);
+		).effectiveness(defensiveElement);
 	}
 
-	private darkDamageEffectiveness(defendingElement: PokemonElement): Effectiveness {
+	private darkDamageEffectiveness(defensiveElement: PokemonElement): Effectiveness {
 		return new ElementDamageEffectiveness(
 			[],
 			[PokemonElement.Fighting, PokemonElement.Dark, PokemonElement.Fairy],
 			[PokemonElement.Psychic, PokemonElement.Ghost]
-		).effectiveness(defendingElement);
+		).effectiveness(defensiveElement);
 	}
 
-	private dragonDamageEffectiveness(defendingElement: PokemonElement): Effectiveness {
+	private dragonDamageEffectiveness(defensiveElement: PokemonElement): Effectiveness {
 		return new ElementDamageEffectiveness(
 			[PokemonElement.Fairy],
 			[PokemonElement.Steel],
 			[PokemonElement.Dragon]
-		).effectiveness(defendingElement);
+		).effectiveness(defensiveElement);
 	}
 
-	private electricDamageEffectiveness(defendingElement: PokemonElement): Effectiveness {
+	private electricDamageEffectiveness(defensiveElement: PokemonElement): Effectiveness {
 		return new ElementDamageEffectiveness(
 			[PokemonElement.Ground],
 			[PokemonElement.Electric, PokemonElement.Grass, PokemonElement.Dragon],
 			[PokemonElement.Water, PokemonElement.Flying]
-		).effectiveness(defendingElement);
+		).effectiveness(defensiveElement);
 	}
 
-	private fairyDamageEffectiveness(defendingElement: PokemonElement): Effectiveness {
+	private fairyDamageEffectiveness(defensiveElement: PokemonElement): Effectiveness {
 		return new ElementDamageEffectiveness(
 			[],
 			[PokemonElement.Fire, PokemonElement.Poison, PokemonElement.Steel],
 			[PokemonElement.Fighting, PokemonElement.Dragon, PokemonElement.Dark]
-		).effectiveness(defendingElement);
+		).effectiveness(defensiveElement);
 	}
 
-	private fightingDamageEffectiveness(defendingElement: PokemonElement): Effectiveness {
+	private fightingDamageEffectiveness(defensiveElement: PokemonElement): Effectiveness {
 		return new ElementDamageEffectiveness(
 			[PokemonElement.Ghost],
 			[
@@ -109,34 +112,34 @@ export class EffectivenessCalculator {
 				PokemonElement.Rock,
 				PokemonElement.Steel
 			]
-		).effectiveness(defendingElement);
+		).effectiveness(defensiveElement);
 	}
 
-	private fireDamageEffectiveness(defendingElement: PokemonElement): Effectiveness {
+	private fireDamageEffectiveness(defensiveElement: PokemonElement): Effectiveness {
 		return new ElementDamageEffectiveness(
 			[],
 			[PokemonElement.Fire, PokemonElement.Water, PokemonElement.Rock, PokemonElement.Dragon],
 			[PokemonElement.Grass, PokemonElement.Ice, PokemonElement.Bug, PokemonElement.Steel]
-		).effectiveness(defendingElement);
+		).effectiveness(defensiveElement);
 	}
 
-	private flyingDamageEffectiveness(defendingElement: PokemonElement): Effectiveness {
+	private flyingDamageEffectiveness(defensiveElement: PokemonElement): Effectiveness {
 		return new ElementDamageEffectiveness(
 			[],
 			[PokemonElement.Electric, PokemonElement.Rock, PokemonElement.Steel],
 			[PokemonElement.Grass, PokemonElement.Fighting, PokemonElement.Bug]
-		).effectiveness(defendingElement);
+		).effectiveness(defensiveElement);
 	}
 
-	private ghostDamageEffectiveness(defendingElement: PokemonElement): Effectiveness {
+	private ghostDamageEffectiveness(defensiveElement: PokemonElement): Effectiveness {
 		return new ElementDamageEffectiveness(
 			[PokemonElement.Normal],
 			[PokemonElement.Dark],
 			[PokemonElement.Psychic, PokemonElement.Ghost]
-		).effectiveness(defendingElement);
+		).effectiveness(defensiveElement);
 	}
 
-	private grassDamageEffectiveness(defendingElement: PokemonElement): Effectiveness {
+	private grassDamageEffectiveness(defensiveElement: PokemonElement): Effectiveness {
 		return new ElementDamageEffectiveness(
 			[],
 			[
@@ -149,10 +152,10 @@ export class EffectivenessCalculator {
 				PokemonElement.Steel
 			],
 			[PokemonElement.Water, PokemonElement.Ground, PokemonElement.Rock]
-		).effectiveness(defendingElement);
+		).effectiveness(defensiveElement);
 	}
 
-	private groundDamageEffectiveness(defendingElement: PokemonElement): Effectiveness {
+	private groundDamageEffectiveness(defensiveElement: PokemonElement): Effectiveness {
 		return new ElementDamageEffectiveness(
 			[PokemonElement.Flying],
 			[PokemonElement.Grass, PokemonElement.Bug],
@@ -163,63 +166,63 @@ export class EffectivenessCalculator {
 				PokemonElement.Rock,
 				PokemonElement.Steel
 			]
-		).effectiveness(defendingElement);
+		).effectiveness(defensiveElement);
 	}
 
-	private iceDamageEffectiveness(defendingElement: PokemonElement): Effectiveness {
+	private iceDamageEffectiveness(defensiveElement: PokemonElement): Effectiveness {
 		return new ElementDamageEffectiveness(
 			[],
 			[PokemonElement.Fire, PokemonElement.Water, PokemonElement.Ice, PokemonElement.Steel],
 			[PokemonElement.Grass, PokemonElement.Ground, PokemonElement.Flying, PokemonElement.Dragon]
-		).effectiveness(defendingElement);
+		).effectiveness(defensiveElement);
 	}
 
-	private normalDamageEffectiveness(defendingElement: PokemonElement): Effectiveness {
+	private normalDamageEffectiveness(defensiveElement: PokemonElement): Effectiveness {
 		return new ElementDamageEffectiveness(
 			[PokemonElement.Ghost],
 			[PokemonElement.Rock, PokemonElement.Steel],
 			[]
-		).effectiveness(defendingElement);
+		).effectiveness(defensiveElement);
 	}
 
-	private poisonDamageEffectiveness(defendingElement: PokemonElement): Effectiveness {
+	private poisonDamageEffectiveness(defensiveElement: PokemonElement): Effectiveness {
 		return new ElementDamageEffectiveness(
 			[PokemonElement.Steel],
 			[PokemonElement.Poison, PokemonElement.Ground, PokemonElement.Rock, PokemonElement.Ghost],
 			[PokemonElement.Grass, PokemonElement.Fairy]
-		).effectiveness(defendingElement);
+		).effectiveness(defensiveElement);
 	}
 
-	private psychicDamageEffectiveness(defendingElement: PokemonElement): Effectiveness {
+	private psychicDamageEffectiveness(defensiveElement: PokemonElement): Effectiveness {
 		return new ElementDamageEffectiveness(
 			[PokemonElement.Dark],
 			[PokemonElement.Psychic, PokemonElement.Steel],
 			[PokemonElement.Fighting, PokemonElement.Poison]
-		).effectiveness(defendingElement);
+		).effectiveness(defensiveElement);
 	}
 
-	private rockDamageEffectiveness(defendingElement: PokemonElement): Effectiveness {
+	private rockDamageEffectiveness(defensiveElement: PokemonElement): Effectiveness {
 		return new ElementDamageEffectiveness(
 			[],
 			[PokemonElement.Fighting, PokemonElement.Ground, PokemonElement.Steel],
 			[PokemonElement.Fire, PokemonElement.Ice, PokemonElement.Flying, PokemonElement.Bug]
-		).effectiveness(defendingElement);
+		).effectiveness(defensiveElement);
 	}
 
-	private steelDamageEffectiveness(defendingElement: PokemonElement): Effectiveness {
+	private steelDamageEffectiveness(defensiveElement: PokemonElement): Effectiveness {
 		return new ElementDamageEffectiveness(
 			[],
 			[PokemonElement.Fire, PokemonElement.Water, PokemonElement.Electric, PokemonElement.Steel],
 			[PokemonElement.Ice, PokemonElement.Rock, PokemonElement.Fairy]
-		).effectiveness(defendingElement);
+		).effectiveness(defensiveElement);
 	}
 
-	private waterDamageEffectiveness(defendingElement: PokemonElement): Effectiveness {
+	private waterDamageEffectiveness(defensiveElement: PokemonElement): Effectiveness {
 		return new ElementDamageEffectiveness(
 			[],
 			[PokemonElement.Water, PokemonElement.Grass, PokemonElement.Dragon],
 			[PokemonElement.Fire, PokemonElement.Ground, PokemonElement.Rock]
-		).effectiveness(defendingElement);
+		).effectiveness(defensiveElement);
 	}
 }
 
@@ -238,12 +241,12 @@ class ElementDamageEffectiveness {
 		this.double = double;
 	}
 
-	public effectiveness(defendingElement: PokemonElement): Effectiveness {
-		if (this.zero.includes(defendingElement)) {
+	public effectiveness(defensiveElement: PokemonElement): Effectiveness {
+		if (this.zero.includes(defensiveElement)) {
 			return Effectiveness.Zero;
-		} else if (this.half.includes(defendingElement)) {
+		} else if (this.half.includes(defensiveElement)) {
 			return Effectiveness.Half;
-		} else if (this.double.includes(defendingElement)) {
+		} else if (this.double.includes(defensiveElement)) {
 			return Effectiveness.Double;
 		} else {
 			return Effectiveness.Single;

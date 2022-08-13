@@ -7,5 +7,5 @@
 </script>
 
 <p class="text-7xl text-center text-secondary-color dark:text-dark-secondary-color">
-	{elementString(scenario.damageElement())} attacks {elementString(scenario.defendingElement())}
+	{elementString(scenario.offensiveElement())} attacks {elementString(scenario.defensiveElement())}
 </p>

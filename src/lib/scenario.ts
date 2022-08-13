@@ -1,19 +1,19 @@
 import type { PokemonElement } from './element';
 
 export class Scenario {
-	private _damageElement: PokemonElement;
-	private _defendingElement: PokemonElement;
+	private _offensiveElement: PokemonElement;
+	private _defensiveElement: PokemonElement;
 
-	constructor(damageElement: PokemonElement, defendingElement: PokemonElement) {
-		this._damageElement = damageElement;
-		this._defendingElement = defendingElement;
+	constructor(offensiveElement: PokemonElement, defensiveElement: PokemonElement) {
+		this._offensiveElement = offensiveElement;
+		this._defensiveElement = defensiveElement;
 	}
 
-	public damageElement(): PokemonElement {
-		return this._damageElement;
+	public offensiveElement(): PokemonElement {
+		return this._offensiveElement;
 	}
 
-	public defendingElement(): PokemonElement {
-		return this._defendingElement;
+	public defensiveElement(): PokemonElement {
+		return this._defensiveElement;
 	}
 }

@@ -13,30 +13,30 @@ export class ScenarioHistory {
 	}
 
 	public record(scenario: Scenario): void {
-		if (!this.history.has(scenario.damageElement())) {
-			this.history.set(scenario.damageElement(), new Set());
+		if (!this.history.has(scenario.offensiveElement())) {
+			this.history.set(scenario.offensiveElement(), new Set());
 		}
-		const scenarioHistory: Set<PokemonElement> = this.history.get(scenario.damageElement());
-		scenarioHistory.add(scenario.defendingElement());
-		this.history.set(scenario.damageElement(), scenarioHistory);
+		const scenarioHistory: Set<PokemonElement> = this.history.get(scenario.offensiveElement());
+		scenarioHistory.add(scenario.defensiveElement());
+		this.history.set(scenario.offensiveElement(), scenarioHistory);
 	}
 
-	public damageElementScenariosAreExhausted(
-		damageElement: PokemonElement,
+	public offensiveElementScenariosAreExhausted(
+		offensiveElement: PokemonElement,
 		fullSet: Set<PokemonElement>
 	): boolean {
-		if (!this.history.has(damageElement)) {
+		if (!this.history.has(offensiveElement)) {
 			return false;
 		}
 
-		return this.history.get(damageElement).size === fullSet.size;
+		return this.history.get(offensiveElement).size === fullSet.size;
 	}
 
-	public defendingElementHistoryForDamageElement(
-		damageElement: PokemonElement
+	public defensiveElementHistoryForoffensiveElement(
+		offensiveElement: PokemonElement
 	): Set<PokemonElement> {
-		if (this.history.has(damageElement)) {
-			return this.history.get(damageElement);
+		if (this.history.has(offensiveElement)) {
+			return this.history.get(offensiveElement);
 		} else {
 			return new Set();
 		}

@@ -72,8 +72,8 @@ export class IndexedDbFailureHistoryRepository implements FailureHistoryReposito
 
 function serializeScenario(scenario: Scenario): SerializedScenario {
 	return {
-		damageElement: elementString(scenario.damageElement()),
-		defendingElement: elementString(scenario.defendingElement())
+		damageElement: elementString(scenario.offensiveElement()),
+		defendingElement: elementString(scenario.defensiveElement())
 	};
 }
 

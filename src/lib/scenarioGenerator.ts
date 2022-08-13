@@ -21,11 +21,11 @@ export class ExhaustiveScenarioGenerator implements ScenarioGenerator {
 	}
 
 	generate(): Scenario {
-		const damageElement: PokemonElement = this.getRandomNonExhaustedDamageElement();
-		const defendingElement: PokemonElement = this.getRandomElementExcluding(
-			this.scenarioHistory.defendingElementHistoryForDamageElement(damageElement)
+		const offensiveElement: PokemonElement = this.getRandomNonExhaustedoffensiveElement();
+		const defensiveElement: PokemonElement = this.getRandomElementExcluding(
+			this.scenarioHistory.defensiveElementHistoryForoffensiveElement(offensiveElement)
 		);
-		const newScenario: Scenario = new Scenario(damageElement, defendingElement);
+		const newScenario: Scenario = new Scenario(offensiveElement, defensiveElement);
 		this.addScenarioToHistory(newScenario);
 		return newScenario;
 	}
@@ -37,15 +37,15 @@ export class ExhaustiveScenarioGenerator implements ScenarioGenerator {
 		return selectRandomMember(remaining);
 	}
 
-	private getRandomNonExhaustedDamageElement(): PokemonElement {
+	private getRandomNonExhaustedoffensiveElement(): PokemonElement {
 		const nonExhausted: Array<PokemonElement> = [...this.elements].filter((element) => {
-			return !this.scenarioHistory.damageElementScenariosAreExhausted(element, this.elements);
+			return !this.scenarioHistory.offensiveElementScenariosAreExhausted(element, this.elements);
 		});
 		try {
 			return selectRandomMember(nonExhausted);
 		} catch (error) {
 			this.scenarioHistory.reset();
-			return this.getRandomNonExhaustedDamageElement();
+			return this.getRandomNonExhaustedoffensiveElement();
 		}
 	}
 

@@ -36,8 +36,8 @@ export class GameState<
 
 	public correctEffectiveness(): Effectiveness {
 		return this.effectivenessCalculator.calculate(
-			this._scenario.damageElement(),
-			this._scenario.defendingElement()
+			this._scenario.offensiveElement(),
+			this._scenario.defensiveElement()
 		);
 	}
 

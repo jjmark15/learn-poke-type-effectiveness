@@ -13,8 +13,8 @@
 
 	function effectiveness(scenario: Scenario): Effectiveness {
 		return effectivenessCalculcator.calculate(
-			scenario.damageElement(),
-			scenario.defendingElement()
+			scenario.offensiveElement(),
+			scenario.defensiveElement()
 		);
 	}
 

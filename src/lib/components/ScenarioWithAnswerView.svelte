@@ -9,9 +9,9 @@
 
 	function failureString(): string {
 		return (
-			elementString(scenario.damageElement()) +
+			elementString(scenario.offensiveElement()) +
 			' -> ' +
-			elementString(scenario.defendingElement()) +
+			elementString(scenario.defensiveElement()) +
 			' = ' +
 			effectivenessString(effectiveness)
 		);
