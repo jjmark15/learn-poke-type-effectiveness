@@ -33,7 +33,7 @@
 <Page>
 	<div class="flex flex-wrap">
 		<label label="number input">
-			<input type="number" bind:value={streakHighScore} min="0" class="text-input" />
+			<input type="number" bind:value={streakHighScore} min="0" class="text-input my-2 rounded-lg" />
 		</label>
 		<Button on:click={submitNewHighScore}>Submit</Button>
 	</div>
