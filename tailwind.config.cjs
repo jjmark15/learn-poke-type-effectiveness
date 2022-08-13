@@ -10,6 +10,9 @@ const config = {
 				"dark-text-color": "var(--dark-text-color)",
 				"button-background-color": "var(--button-background-color)",
 				"dark-button-background-color": "var(--dark-button-background-color)",
+				"correct-color": "var(--correct-color)",
+				"dark-correct-color": "var(--dark-correct-color)",
+				"incorrect-color": "var(--incorrect-color)",
 			}
 		}
 	},
