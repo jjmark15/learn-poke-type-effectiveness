@@ -3,8 +3,12 @@
 @tailwind utilities;
 
 :root {
-	--background-color: rgb(251 207 232);
-	--dark-background-color: rgb(17 24 39);
+	--primary-color: rgb(251 207 232);
+	--dark-primary-color: var(--secondary-color);
+	--secondary-color: rgb(17 24 39);
+	--dark-secondary-color: var(--primary-color);
+	--background-color: var(--primary-color);
+	--dark-background-color: var(--dark-primary-color);
 	--text-color: rgb(55 65 81);
 	--dark-text-color: rgb(255 255 255);
 	--button-background-color: rgb(253 242 248);

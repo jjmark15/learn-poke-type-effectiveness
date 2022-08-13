@@ -6,6 +6,6 @@
 	export let scenario: Scenario;
 </script>
 
-<p class="text-7xl text-center text-gray-900 dark:text-pink-200">
+<p class="text-7xl text-center text-secondary-color dark:text-dark-secondary-color">
 	{elementString(scenario.damageElement())} attacks {elementString(scenario.defendingElement())}
 </p>

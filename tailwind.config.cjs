@@ -4,6 +4,10 @@ const config = {
 	theme: {
 		extend: {
 			colors: {
+				"primary-color": "var(--primary-color)",
+				"dark-primary-color": "var(--dark-primary-color)",
+				"secondary-color": "var(--secondary-color)",
+				"dark-secondary-color": "var(--dark-secondary-color)",
 				"background-color": "var(--background-color)",
 				"dark-background-color": "var(--dark-background-color)",
 				"text-color": "var(--text-color)",
