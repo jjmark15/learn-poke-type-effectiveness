@@ -25,7 +25,12 @@
 			<h1 class="header">Supabase + Svelte</h1>
 			<p class="description">Sign in via magic link with your email below</p>
 			<div>
-				<input class="inputField" type="email" placeholder="Your email" bind:value={email} />
+				<input
+					class="inputField text-input"
+					type="email"
+					placeholder="Your email"
+					bind:value={email}
+				/>
 			</div>
 			<div>
 				<input

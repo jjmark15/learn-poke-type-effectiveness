@@ -39,3 +39,7 @@ nav {
 		@apply border-red-500 text-red-500 !important;
 	}
 }
+
+.text-input {
+	@apply bg-button-background-color dark:bg-dark-button-background-color;
+}
