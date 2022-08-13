@@ -44,7 +44,7 @@ nav {
 	}
 
 	&.incorrect {
-		@apply border-correct-color text-incorrect-color !important;
+		@apply border-incorrect-color text-incorrect-color !important;
 	}
 }
 
