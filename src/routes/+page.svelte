@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Effectiveness, EFFECTIVENESSES } from '$lib/effectiveness';
-	import { browser } from '$app/env';
+	import { browser } from '$app/environment';
 	import type { Scenario } from '$lib/scenario';
 	import EffectivenessButton from '$lib/components/EffectivenessButton.svelte';
 	import Button from '$lib/components/Button.svelte';

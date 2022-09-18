@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { browser } from '$app/env';
+	import { browser } from '$app/environment';
 	import Page from '$lib/components/Page.svelte';
 	import Button from '$lib/components/Button.svelte';
 	import { HighScoreRepositoryFactory } from '$lib/highScoreRepositoryFactory';
@@ -33,7 +33,12 @@
 <Page>
 	<div class="flex flex-wrap">
 		<label label="number input">
-			<input type="number" bind:value={streakHighScore} min="0" class="text-input my-2 rounded-lg" />
+			<input
+				type="number"
+				bind:value={streakHighScore}
+				min="0"
+				class="text-input my-2 rounded-lg"
+			/>
 		</label>
 		<Button on:click={submitNewHighScore}>Submit</Button>
 	</div>
