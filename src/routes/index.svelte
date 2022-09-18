@@ -1,10 +1,6 @@
 <script lang="ts">
 	import { Effectiveness, EFFECTIVENESSES } from '$lib/effectiveness';
-	import { EffectivenessCalculator } from '$lib/effectivenessCalculator';
-	import { StreakCounter } from '$lib/streakCounter';
 	import { browser } from '$app/env';
-	import { GameState } from '$lib/gameState';
-	import { ExhaustiveScenarioGenerator } from '$lib/scenarioGenerator';
 	import type { Scenario } from '$lib/scenario';
 	import EffectivenessButton from '$lib/components/EffectivenessButton.svelte';
 	import Button from '$lib/components/Button.svelte';
@@ -12,41 +8,39 @@
 	import ScenarioView from '$lib/components/ScenarioView.svelte';
 	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
-	import { IndexedDbFailureHistoryRepository } from '$lib/failureHistoryRepository';
 	import FullScreenPage from '$lib/components/FullScreenPage.svelte';
-	import { HighScoreRepositoryFactory } from '$lib/highScoreRepositoryFactory';
-	import type { HighScoreRepository } from '$lib/highScoreRepository';
+	import { gameState } from '$lib/gameStateStore';
 
 	function refreshLocalScenario() {
-		scenario = gameState.scenario();
+		scenario = $gameState.scenario();
 	}
 
 	async function refreshLocalHighScore() {
-		streakHighScore = await gameState.highScore();
+		streakHighScore = await $gameState.highScore();
 	}
 
 	function refreshLocalStreakCount(): void {
-		streakCounterValue = gameState.currentStreak();
+		streakCounterValue = $gameState.currentStreak();
 	}
 
 	function refreshLocalAnswerSelection() {
-		effectivenessSelection = gameState.selectedEffectiveness();
+		effectivenessSelection = $gameState.selectedEffectiveness();
 	}
 
 	function refreshLocalCorrectAnswer() {
-		correctEffectiveness = gameState.correctEffectiveness();
+		correctEffectiveness = $gameState.correctEffectiveness();
 	}
 
 	function handleSelection(effectiveness: Effectiveness) {
-		gameState.selectEffectiveness(effectiveness);
+		$gameState.selectEffectiveness(effectiveness);
 		refreshLocalAnswerSelection();
 		refreshLocalStreakCount();
 	}
 
 	function resetState() {
-		gameState.proceedToNextScenario();
+		$gameState.proceedToNextScenario();
 		scenarioCount += 1;
-		if (gameState.startingANewStreak()) {
+		if ($gameState.startingANewStreak()) {
 			refreshLocalHighScore();
 		}
 		refreshLocalStreakCount();
@@ -62,16 +56,6 @@
 		refreshLocalCorrectAnswer();
 	}
 
-	function initialiseGameState(): void {
-		gameState = new GameState(
-			HighScoreRepositoryFactory.create(),
-			new IndexedDbFailureHistoryRepository(),
-			new EffectivenessCalculator(),
-			ExhaustiveScenarioGenerator.default(),
-			StreakCounter.default()
-		);
-	}
-
 	let scenario: Scenario;
 	let streakHighScore: number;
 	let streakCounterValue: number = 0;
@@ -79,13 +63,7 @@
 	let effectivenessSelection: Effectiveness | undefined;
 	$: answerSelected = effectivenessSelection !== undefined;
 
-	let gameState: GameState<
-		HighScoreRepository,
-		IndexedDbFailureHistoryRepository,
-		ExhaustiveScenarioGenerator
-	>;
 	if (browser) {
-		initialiseGameState();
 		initialiseLocalVariables();
 	}
 
