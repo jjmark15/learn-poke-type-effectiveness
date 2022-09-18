@@ -2,7 +2,7 @@
 	import { effectivenessString, type Effectiveness } from '../effectiveness';
 	import { createEventDispatcher } from 'svelte';
 
-	let isSelected: boolean;
+	export let isSelected: boolean;
 	export let isCorrect: boolean;
 	export let disabled: boolean = false;
 	export let effectiveness: Effectiveness;

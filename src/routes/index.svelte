@@ -50,6 +50,7 @@
 	}
 
 	function initialiseLocalVariables(): void {
+		effectivenessSelection = $gameState.selectedEffectiveness();
 		refreshLocalHighScore();
 		refreshLocalStreakCount();
 		refreshLocalScenario();
@@ -101,6 +102,7 @@
 						<EffectivenessButton
 							class="m-1 flex-grow-0"
 							isCorrect={eff === correctEffectiveness}
+							isSelected={eff === effectivenessSelection}
 							effectiveness={eff}
 							disabled={answerSelected}
 							on:click={() => handleSelection(eff)}
