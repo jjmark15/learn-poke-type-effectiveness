@@ -76,7 +76,7 @@
 	let streakHighScore: number;
 	let streakCounterValue: number = 0;
 	let correctEffectiveness: Effectiveness;
-	let effectivenessSelection: Effectiveness;
+	let effectivenessSelection: Effectiveness | undefined;
 	$: answerSelected = effectivenessSelection !== undefined;
 
 	let gameState: GameState<

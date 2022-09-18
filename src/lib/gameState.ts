@@ -11,7 +11,7 @@ export class GameState<
 	SFH extends FailureHistoryRepository,
 	SG extends ScenarioGenerator
 > {
-	private _scenario?: Scenario;
+	private _scenario: Scenario;
 	private highScoreRepository: HSR;
 	private scenarioFailureHistoryRepository: SFH;
 	private effectivenessCalculator: EffectivenessCalculator;
@@ -31,7 +31,7 @@ export class GameState<
 		this.effectivenessCalculator = effectivenessCalculator;
 		this.scenarioGenerator = scenarioGenerator;
 		this.streakCounter = streakCounter;
-		this.generateNewScenario();
+		this._scenario = scenarioGenerator.generate();
 	}
 
 	public correctEffectiveness(): Effectiveness {
@@ -55,7 +55,7 @@ export class GameState<
 		return this._selectedEffectiveness === this.correctEffectiveness();
 	}
 
-	public selectedEffectiveness(): Effectiveness {
+	public selectedEffectiveness(): Effectiveness | undefined {
 		return this._selectedEffectiveness;
 	}
 
