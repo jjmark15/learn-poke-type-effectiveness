@@ -36,7 +36,7 @@
 <Page>
 	<div class="flex flex-grow flex-col">
 		{#each scenarioFailures as scenario}
-			<ScenarioWithAnswerView {scenario} effectiveness={effectiveness(scenario)} />
+			<ScenarioWithAnswerView class="pb-1" {scenario} effectiveness={effectiveness(scenario)} />
 		{/each}
 	</div>
 </Page>

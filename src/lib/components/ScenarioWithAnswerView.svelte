@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { effectivenessString, type Effectiveness } from '$lib/effectiveness';
-	import { elementString } from '$lib/element';
-
+	import ElementLabel from '$lib/components/ElementLabel.svelte';
 	import type { Scenario } from '$lib/scenario';
+
+	let classNames: string = '';
+	export { classNames as class };
 
 	export let scenario: Scenario;
 	export let effectiveness: Effectiveness;
@@ -14,19 +16,19 @@
 	}
 </script>
 
-<p class="text-2xl mb-1">
-	<span class="element font-striking">{elementString(scenario.offensiveElement())}</span>
-	->
-	<span class="element font-striking">{elementString(scenario.defensiveElement())}</span>
-	>
-	<span class="effectiveness font-striking {effectivenessClass(effectiveness)}"
+<div class="{classNames} text-xl mb-1 flex flex-row flex-wrap">
+	<ElementLabel element={scenario.offensiveElement()} />
+	<span class="mx-1">-></span>
+	<ElementLabel element={scenario.defensiveElement()} />
+	<span class="mx-1">></span>
+	<span class="effectiveness {effectivenessClass(effectiveness)}"
 		>{effectivenessString(effectiveness)}</span
 	>
-</p>
+</div>
 
 <style>
 	.effectiveness {
-		@apply px-2 py-1 rounded-lg;
+		@apply px-1 rounded-lg;
 
 		&--no-effect {
 			@apply bg-black text-yellow-200;
