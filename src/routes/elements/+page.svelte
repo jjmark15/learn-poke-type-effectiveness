@@ -11,9 +11,9 @@
 </svelte:head>
 
 <Page>
-	<div class="flex flex-col">
+	<div class="flex flex-row flex-wrap">
 		{#each sortedElements as element}
-			<div class="mb-2 w-fit h-fit">
+			<div class="mb-2 mr-2 w-fit h-fit">
 				<ElementLabel {element} />
 			</div>
 		{/each}
