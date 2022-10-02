@@ -27,5 +27,21 @@
 <style>
 	.effectiveness {
 		@apply px-2 py-1 rounded-lg;
+
+		&--no-effect {
+			@apply bg-black text-yellow-200;
+		}
+
+		&--not-very-effective {
+			@apply bg-red-400 text-yellow-200;
+		}
+
+		&--normal {
+			@apply bg-white text-black;
+		}
+
+		&--super-effective {
+			@apply bg-green-400 text-yellow-200;
+		}
 	}
 </style>
