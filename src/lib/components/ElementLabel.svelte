@@ -11,7 +11,9 @@
 	}
 </script>
 
-<div class="{classNames} {elementClass(element)}">{elementString(element)}</div>
+<div class="text-dark-text-color {classNames} {elementClass(element)}">
+	{elementString(element)}
+</div>
 
 <style>
 	div {
