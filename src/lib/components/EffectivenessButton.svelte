@@ -25,7 +25,7 @@
 </script>
 
 <button
-	class="btn {classNames}"
+	class="btn font-striking large-text {classNames}"
 	class:correct={isCorrect && disabled}
 	class:incorrect={!isCorrect && isSelected}
 	{disabled}

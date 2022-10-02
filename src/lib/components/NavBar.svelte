@@ -4,7 +4,7 @@
 </script>
 
 <div class="flex flex-row justify-start mb-2">
-	<nav class="flex-grow">
+	<nav class="flex-grow font-striking">
 		<a data-sveltekit-prefetch href="/">home</a>
 		<a data-sveltekit-prefetch href="/failures">failures</a>
 		{#if !$user.active()}

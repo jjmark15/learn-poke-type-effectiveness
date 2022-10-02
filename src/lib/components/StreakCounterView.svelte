@@ -7,7 +7,7 @@
 	export { classNames as class };
 </script>
 
-<p class={classNames}>
+<p class="font-striking large-text {classNames}">
 	Current streak: {streak}
 	{#if bestStreak !== undefined}
 		<span in:fade class="text-pink-50 dark:text-gray-500">({bestStreak})</span>

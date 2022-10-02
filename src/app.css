@@ -18,9 +18,16 @@
 	--incorrect-color: rgb(239 68 68);
 }
 
+.font-striking {
+	font-family: 'Bangers', cursive;
+}
+
+.large-text {
+	@apply text-3xl;
+}
+
 body {
-	@apply text-text-color dark:text-dark-text-color text-3xl 
-		bg-background-color dark:bg-dark-background-color;
+	@apply text-text-color dark:text-dark-text-color bg-background-color dark:bg-dark-background-color;
 }
 
 nav {
@@ -50,4 +57,24 @@ nav {
 
 .text-input {
 	@apply bg-button-background-color dark:bg-dark-button-background-color;
+}
+
+.effectiveness {
+	background-color: pink;
+
+	&--no-effect {
+		@apply bg-black text-yellow-200;
+	}
+
+	&--not-very-effective {
+		@apply bg-red-400 text-yellow-200;
+	}
+
+	&--normal {
+		@apply bg-white text-black;
+	}
+
+	&--super-effective {
+		@apply bg-green-400 text-yellow-200;
+	}
 }

@@ -7,15 +7,19 @@
 	export let scenario: Scenario;
 	export let effectiveness: Effectiveness;
 
-	function failureString(): string {
+	function effectivenessClass(effectiveness: Effectiveness): string {
 		return (
-			elementString(scenario.offensiveElement()) +
-			' -> ' +
-			elementString(scenario.defensiveElement()) +
-			' = ' +
-			effectivenessString(effectiveness)
+			'effectiveness--' + effectivenessString(effectiveness).toLowerCase().replaceAll(' ', '-')
 		);
 	}
 </script>
 
-<p>{failureString()}</p>
+<p class="text-2xl">
+	<span class="element font-striking">{elementString(scenario.offensiveElement())}</span>
+	->
+	<span class="element font-striking">{elementString(scenario.defensiveElement())}</span>
+	>
+	<span class="effectiveness font-striking {effectivenessClass(effectiveness)}"
+		>{effectivenessString(effectiveness)}</span
+	>
+</p>

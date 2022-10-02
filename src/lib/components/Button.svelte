@@ -13,4 +13,6 @@
 	}
 </script>
 
-<button class="btn {classNames}" {disabled} on:click={() => handleSelection()}><slot /> </button>
+<button class="btn {classNames}" {disabled} on:click={() => handleSelection()}
+	><slot />
+</button>

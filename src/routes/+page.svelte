@@ -110,8 +110,10 @@
 					{/each}
 				</div>
 				<div class="flex flex-col flex-grow-0 justify-center sm:flex-grow">
-					<Button class="mx-auto flex-grow-0" disabled={!answerSelected} on:click={resetState}
-						>{'Next'}</Button
+					<Button
+						class="mx-auto flex-grow-0 font-striking large-text"
+						disabled={!answerSelected}
+						on:click={resetState}>{'Next'}</Button
 					>
 				</div>
 			</div>
