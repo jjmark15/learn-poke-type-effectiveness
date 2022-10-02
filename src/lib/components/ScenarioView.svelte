@@ -17,10 +17,10 @@
 
 <style>
 	.scenario-view-container {
-		@apply text-center flex flex-row flex-wrap justify-center;
+		@apply flex flex-col md:flex-row md:flex-wrap md:justify-center;
 
 		& > div {
-			@apply mb-4;
+			@apply mb-4 self-center;
 		}
 	}
 </style>
