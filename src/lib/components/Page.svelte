@@ -5,7 +5,7 @@
 </script>
 
 <div class:h-screen={fullScreen} class="flex flex-grow flex-col p-4">
-	<div class="mb-4">
+	<div>
 		<NavBar />
 	</div>
 	<slot />

@@ -19,7 +19,7 @@
 	.scenario-view-container {
 		@apply flex flex-col md:flex-row md:flex-wrap md:justify-center;
 
-		& > div {
+		div {
 			@apply mb-4 self-center;
 		}
 	}

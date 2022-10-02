@@ -30,13 +30,6 @@ body {
 	@apply text-text-color dark:text-dark-text-color bg-background-color dark:bg-dark-background-color;
 }
 
-nav {
-	a {
-		@apply bg-button-background-color dark:bg-dark-button-background-color 
-			text-2xl py-1 px-2 mr-1 rounded-lg shadow-md;
-	}
-}
-
 .btn {
 	@apply bg-button-background-color dark:bg-dark-button-background-color
 		py-1 px-2 rounded-lg shadow-md border-2 border-transparent;
