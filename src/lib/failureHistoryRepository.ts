@@ -63,11 +63,20 @@ export class IndexedDbFailureHistoryRepository implements FailureHistoryReposito
 	public async recordFailure(scenario: Scenario): Promise<void> {
 		const db = await this.lazyDbPromise();
 
-		let history: SerializedScenario[] = await this.getSerialized();
-		const indexEnd = Math.max(MAX_HISTORY_LENGTH, history.length - 1);
-		history = [serializeScenario(scenario), ...history].slice(0, indexEnd);
+		let history: SerializedScenario[] = [
+			serializeScenario(scenario),
+			...(await this.getSerialized())
+		];
 
-		await db.put(OBJECT_STORE_NAME, history, HISTORY_OBJECT_KEY);
+		if (history.length > MAX_HISTORY_LENGTH) {
+			history = history.slice(0, MAX_HISTORY_LENGTH);
+		}
+
+		await db.put(
+			OBJECT_STORE_NAME,
+			history,
+			HISTORY_OBJECT_KEY
+		);
 	}
 }
 
