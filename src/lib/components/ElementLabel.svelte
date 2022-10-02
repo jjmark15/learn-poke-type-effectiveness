@@ -11,15 +11,11 @@
 	}
 </script>
 
-<div class="text-dark-text-color {classNames} {elementClass(element)}">
+<div class="text-dark-text-color poke-icon uppercase {classNames} {elementClass(element)}">
 	{elementString(element)}
 </div>
 
 <style>
-	div {
-		@apply rounded-md h-fit w-fit px-1;
-	}
-
 	.pokemon-element {
 		&--bug {
 			background-color: #aabb22;

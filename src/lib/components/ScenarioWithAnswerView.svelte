@@ -16,20 +16,18 @@
 	}
 </script>
 
-<div class="{classNames} text-xl mb-1 flex flex-row flex-wrap">
+<div class="{classNames} text-xl flex flex-row flex-wrap">
 	<ElementLabel element={scenario.offensiveElement()} />
 	<span class="mx-1">-></span>
 	<ElementLabel element={scenario.defensiveElement()} />
 	<span class="mx-1">></span>
-	<span class="effectiveness {effectivenessClass(effectiveness)}"
+	<span class="poke-icon {effectivenessClass(effectiveness)}"
 		>{effectivenessString(effectiveness)}</span
 	>
 </div>
 
 <style>
 	.effectiveness {
-		@apply px-1 rounded-lg;
-
 		&--no-effect {
 			@apply bg-black text-yellow-200;
 		}
