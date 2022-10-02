@@ -7,7 +7,7 @@
 	<nav class="font-striking">
 		<a data-sveltekit-prefetch href="/">home</a>
 		<a data-sveltekit-prefetch href="/failures">failures</a>
-		<!-- <a data-sveltekit-prefetch href="/elements">elements</a> -->
+		<a data-sveltekit-prefetch href="/elements">elements</a>
 		{#if !$user.active()}
 			<a data-sveltekit-prefetch href="/login">login</a>
 		{/if}
