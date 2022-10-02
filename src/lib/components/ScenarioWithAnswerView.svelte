@@ -14,7 +14,7 @@
 	}
 </script>
 
-<p class="text-2xl">
+<p class="text-2xl mb-1">
 	<span class="element font-striking">{elementString(scenario.offensiveElement())}</span>
 	->
 	<span class="element font-striking">{elementString(scenario.defensiveElement())}</span>
@@ -23,3 +23,9 @@
 		>{effectivenessString(effectiveness)}</span
 	>
 </p>
+
+<style>
+	.effectiveness {
+		@apply px-2 py-1 rounded-lg;
+	}
+</style>
