@@ -3,16 +3,19 @@
 
 	export let element: PokemonElement;
 
+	let classNames: string = '';
+	export { classNames as class };
+
 	function elementClass(element: PokemonElement): string {
 		return 'pokemon-element--' + elementString(element).toLowerCase();
 	}
 </script>
 
-<div class={elementClass(element)}>{elementString(element)}</div>
+<div class="{classNames} {elementClass(element)}">{elementString(element)}</div>
 
 <style>
 	div {
-		@apply flex flex-shrink;
+		@apply rounded-md h-fit w-fit px-1;
 	}
 
 	.pokemon-element {
