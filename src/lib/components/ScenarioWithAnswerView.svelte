@@ -16,7 +16,7 @@
 	}
 </script>
 
-<div class="{classNames} text-xl flex flex-row flex-wrap">
+<div class="{classNames} text-base flex flex-row flex-wrap">
 	<ElementLabel element={scenario.offensiveElement()} />
 	<span class="mx-1">-></span>
 	<ElementLabel element={scenario.defensiveElement()} />

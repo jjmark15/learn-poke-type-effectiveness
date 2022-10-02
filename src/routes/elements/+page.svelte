@@ -14,7 +14,7 @@
 	<div class="flex flex-col">
 		{#each sortedElements as element}
 			<div class="mb-2">
-				<ElementLabel class="text-3xl" {element} />
+				<ElementLabel {element} />
 			</div>
 		{/each}
 	</div>

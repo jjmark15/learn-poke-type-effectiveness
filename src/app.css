@@ -60,5 +60,5 @@ nav {
 }
 
 .poke-icon {
-	@apply rounded-md text-base h-fit w-fit px-2 py-1;
+	@apply rounded-md h-fit w-fit px-2 py-1;
 }
