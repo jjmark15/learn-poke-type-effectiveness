@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { effectivenessString, type Effectiveness } from '$lib/effectiveness';
-	import ElementLabel from '$lib/components/ElementLabel.svelte';
+	import ElementLabel from '$lib/components/ElementIcon.svelte';
 	import type { Scenario } from '$lib/scenario';
 
 	let classNames: string = '';
