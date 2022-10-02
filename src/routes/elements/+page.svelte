@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-	<title>TODO</title>
+	<title>Pokemon Elements</title>
 </svelte:head>
 
 <Page>
