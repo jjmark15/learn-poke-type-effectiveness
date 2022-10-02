@@ -18,9 +18,9 @@
 
 <div class="{classNames} text-base flex flex-row flex-wrap">
 	<ElementLabel element={scenario.offensiveElement()} />
-	<span class="mx-1">-></span>
+	<div class="scenario-symbol">-></div>
 	<ElementLabel element={scenario.defensiveElement()} />
-	<span class="mx-1">></span>
+	<span class="scenario-symbol">=></span>
 	<span class="poke-icon {effectivenessClass(effectiveness)}"
 		>{effectivenessString(effectiveness)}</span
 	>
@@ -43,5 +43,9 @@
 		&--super-effective {
 			@apply bg-green-400 text-yellow-200;
 		}
+	}
+
+	.scenario-symbol {
+		@apply mx-1 self-center;
 	}
 </style>

@@ -13,7 +13,7 @@
 <Page>
 	<div class="flex flex-col">
 		{#each sortedElements as element}
-			<div class="mb-2">
+			<div class="mb-2 w-fit h-fit">
 				<ElementLabel {element} />
 			</div>
 		{/each}
