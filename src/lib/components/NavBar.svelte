@@ -3,7 +3,7 @@
 	import { user } from '$lib/sessionStore';
 </script>
 
-<div class="flex flex-row justify-start mb-2">
+<div class="flex flex-row justify-start">
 	<nav class="flex-grow font-striking">
 		<a data-sveltekit-prefetch href="/">home</a>
 		<a data-sveltekit-prefetch href="/failures">failures</a>
