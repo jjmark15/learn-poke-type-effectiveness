@@ -119,5 +119,7 @@ export function parseElementString(elementString: string): PokemonElement {
 			return PokemonElement.Steel;
 		case 'Water':
 			return PokemonElement.Water;
+		default:
+			throw new Error('Unrecognised element: ' + elementString);
 	}
 }
