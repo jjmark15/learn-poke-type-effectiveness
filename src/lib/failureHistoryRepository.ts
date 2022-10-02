@@ -7,6 +7,7 @@ const DATABASE_NAME = 'failure_history';
 const OBJECT_STORE_NAME = 'failures';
 const HISTORY_OBJECT_KEY = 'history';
 const DB_VERSION = 1;
+const MAX_HISTORY_LENGTH = 20;
 
 interface FailureHistorySchema extends DBSchema {
 	failures: {
@@ -63,7 +64,7 @@ export class IndexedDbFailureHistoryRepository implements FailureHistoryReposito
 		const db = await this.lazyDbPromise();
 
 		let history: SerializedScenario[] = await this.getSerialized();
-		const indexEnd = Math.max(10, history.length - 1);
+		const indexEnd = Math.max(MAX_HISTORY_LENGTH, history.length - 1);
 		history = [serializeScenario(scenario), ...history].slice(0, indexEnd);
 
 		await db.put(OBJECT_STORE_NAME, history, HISTORY_OBJECT_KEY);
