@@ -85,9 +85,7 @@
 		<StreakCounterView streak={streakCounterValue} bestStreak={streakHighScore} />
 		<div class="flex flex-col flex-grow justify-center">
 			<div class="flex flex-col flex-grow justify-center mb-2">
-				{#if showLoading}
-					<p class="text-7xl text-center text-gray-900 dark:text-pink-200">Loading</p>
-				{:else}
+				{#if !showLoading}
 					{#key scenarioCount}
 						<div out:slide|local={{ duration: 200 }} in:slide={{ delay: 200, duration: 200 }}>
 							<ScenarioView {scenario} />
