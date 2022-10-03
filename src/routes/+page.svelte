@@ -86,11 +86,9 @@
 		<div class="flex flex-col flex-grow justify-center">
 			<div class="flex flex-col flex-grow justify-center mb-2">
 				{#if !showLoading}
-					{#key scenarioCount}
-						<div out:slide|local={{ duration: 200 }} in:slide={{ delay: 200, duration: 200 }}>
-							<ScenarioView {scenario} />
-						</div>
-					{/key}
+					<div in:slide|local={{ duration: 200 }}>
+						<ScenarioView {scenario} />
+					</div>
 				{/if}
 			</div>
 
