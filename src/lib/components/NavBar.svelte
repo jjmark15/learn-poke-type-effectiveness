@@ -1,19 +1,15 @@
 <script lang="ts">
-	import DarkModeToggle from '$lib/components/DarkModeToggle.svelte';
 	import { user } from '$lib/sessionStore';
 </script>
 
-<div class="flex flex-row justify-start">
-	<nav class="font-striking">
-		<a data-sveltekit-prefetch href="/">home</a>
-		<a data-sveltekit-prefetch href="/failures">failures</a>
-		<a data-sveltekit-prefetch href="/elements">elements</a>
-		{#if !$user.active()}
-			<a data-sveltekit-prefetch href="/login">login</a>
-		{/if}
-	</nav>
-	<DarkModeToggle class="ml-2 h-fit" />
-</div>
+<nav class="font-striking">
+	<a data-sveltekit-prefetch href="/">home</a>
+	<a data-sveltekit-prefetch href="/failures">failures</a>
+	<a data-sveltekit-prefetch href="/elements">elements</a>
+	{#if !$user.active()}
+		<a data-sveltekit-prefetch href="/login">login</a>
+	{/if}
+</nav>
 
 <style>
 	nav {
