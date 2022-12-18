@@ -3,11 +3,11 @@
 </script>
 
 <nav class="font-striking">
-	<a data-sveltekit-prefetch href="/">home</a>
-	<a data-sveltekit-prefetch href="/failures">failures</a>
-	<a data-sveltekit-prefetch href="/elements">elements</a>
+	<a data-sveltekit-preload-data href="/">home</a>
+	<a data-sveltekit-preload-data href="/failures">failures</a>
+	<a data-sveltekit-preload-data href="/elements">elements</a>
 	{#if !$user.active()}
-		<a data-sveltekit-prefetch href="/login">login</a>
+		<a data-sveltekit-preload-data href="/login">login</a>
 	{/if}
 </nav>
 

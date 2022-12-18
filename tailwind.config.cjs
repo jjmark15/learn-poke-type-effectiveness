@@ -1,6 +1,6 @@
-const config = {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
-
 	theme: {
 		extend: {
 			colors: {
@@ -20,9 +20,5 @@ const config = {
 			}
 		}
 	},
-
 	plugins: [],
-	darkMode: 'class'
-};
-
-module.exports = config;
+  }
